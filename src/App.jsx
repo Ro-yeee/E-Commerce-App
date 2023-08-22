@@ -1,16 +1,18 @@
 import LoginPage from './Pages/LoginPage/LoginPage'
 import SignUpPage from './Pages/SignUpPage/SignUpPage'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route,useLocation } from 'react-router-dom'
 
 
 function App() {
+
+  const location = useLocation()
+
   return (
-    <Router>
-        <Routes>
-            <Route path='/' element={<LoginPage/>}/>
-            <Route path='/signup' element={<SignUpPage/>}/>
-        </Routes>
-    </Router>
+    <Routes location={location} key={location.pathname}>
+        <Route index element ={<h1>HELLo</h1>}/>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/signup' element={<SignUpPage/>}/>
+    </Routes>
   )
 }
 
