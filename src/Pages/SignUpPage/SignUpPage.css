@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.loginContainer{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.logoBanner{
+    background: #000000; 
+    max-width: 588px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 2;
+}
+
+.logoBanner>img{
+    width: 80%;
+}
+
+.formSection{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5F5F5;
+}
+
+.icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 140px;
+    display: none;
+}
+
+.formBox{
+    max-width: 407px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.formBox > h1{
+    color: #000;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.formBox > p{
+    margin-top: 5px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+}
+
+.inputForm{
+    margin-top: 25px;
+    background: white;
+    border-radius: 20px ;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px;
+}
+
+.inputForm > label{
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+.inputForm > input{
+    height: 40px;
+    border-radius: 10px;
+    background: #F5F5F5;
+    border: none;
+    margin-top: 10px;
+}
+
+.inputForm > button{
+    height: 40px;
+    background: black;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 900;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+@media (max-width:900px){
+    .logoBanner{
+        display: none;
+    }
+    .icon{
+        display: block;
+    }
+}
