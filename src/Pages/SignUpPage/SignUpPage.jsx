@@ -2,12 +2,27 @@ import { useState } from "react"
 import "./SignUpPage.css"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../FirebaseConfig"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUpPage() {
 
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+
+    const notify = (message) =>{
+        toast(message,{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+    }
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -16,8 +31,20 @@ function SignUpPage() {
                 console.log(result.user)
             })
             .catch((error)=>{
-                console.log("Error Code: "+error.code)
-                console.log("Error Message: "+error.message)
+                switch(error.code){
+                    case "auth/invalid-email" : 
+                                notify("Invalid Email")
+                                break
+                    case "auth/weak-password" :
+                                notify("Password should be atleast 6 characters")    
+                                break  
+                    case "auth/email-already-in-use" :
+                                notify("User already exist")
+                                break
+                    default :
+                            notify(error.message)
+                            break
+                }
                 console.log(error)
             })
     }
@@ -64,6 +91,7 @@ function SignUpPage() {
                 </form>
             </div>
         </div>
+        <ToastContainer />
     </div>
   )
 }

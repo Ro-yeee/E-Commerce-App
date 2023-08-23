@@ -3,6 +3,8 @@ import "./LoginPage.css"
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import { auth, provider } from "../../FirebaseConfig"
 import { useState } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginPage() {
 
@@ -16,6 +18,19 @@ function LoginPage() {
             })
     }
 
+    const notify = (message) =>{
+        toast(message,{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+    }
+
     const handleLogin = (e) =>{
         e.preventDefault()
         signInWithEmailAndPassword(auth,email,password)
@@ -23,8 +38,21 @@ function LoginPage() {
                 console.log(result.user)
             })
             .catch((error)=>{
-                console.log("Error Code: "+error.code)
-                console.log("Error Message: "+error.message)
+                switch(error.code){
+                    case "auth/invalid-email" : 
+                                notify("Invalid Email")
+                                break
+                    case "auth/user-not-found" :
+                                notify("User does not exist")    
+                                break  
+                    case "auth/wrong-password" :
+                                notify("Password entered is wrong")
+                                break
+                    default :
+                             notify(error.message)
+                             break
+                }
+                console.log(error)
             })
     }
 
@@ -76,6 +104,7 @@ function LoginPage() {
                     <span>Don’t have an account? <Link to="/signup">Register here</Link></span>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 }
