@@ -1,0 +1,76 @@
+.sideBar{
+    max-width: 280px;
+    width: 100%;
+    border-radius: 30px;
+    background: black; 
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 40px 40px;
+}
+
+.pagelogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pagelogo > img{
+    margin-left: 20px;
+    width: 100px;
+}
+
+.logoname{
+    display: flex;
+    flex-direction: column;
+}
+
+.logoname > h1{
+    font-family: cursive ,Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+    font-size: 24px;
+}
+
+.profile{
+    margin-top: -20px;
+    color: white;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    font-family: cursive, sans-serif;
+}
+
+.profile > img{
+    width: 40px;
+    border-radius: 50%;
+}
+
+.icons{
+    color: white;
+}
+
+.sideLinks{
+    display: flex;
+    gap: 20px;
+    color: white;
+}
+
+.sideLinks:hover .icons{
+    color: rgb(0, 229, 255);
+}
+
+.linkActive{
+    color: aqua;
+}
+
+.bottomLinks{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}

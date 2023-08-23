@@ -1,15 +1,18 @@
 import { useState } from "react"
 import "./SignUpPage.css"
-import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../../FirebaseConfig"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { auth, db } from "../../FirebaseConfig"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router";
+import { addDoc, collection } from "firebase/firestore";
 
 function SignUpPage() {
 
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const navigate = useNavigate()
 
     const notify = (message) =>{
         toast(message,{
@@ -28,7 +31,16 @@ function SignUpPage() {
         e.preventDefault()
         createUserWithEmailAndPassword(auth,email,password)
             .then(result =>{
-                console.log(result.user)
+                updateProfile(result.user,{displayName:name,photoURL:"./images/avatar.png"})
+            .then(()=>{
+                addDoc(collection(db,"users"),{
+                    id: result.user.uid,
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photo: result.user.photoURL
+                })
+                navigate("/")
+            })
             })
             .catch((error)=>{
                 switch(error.code){

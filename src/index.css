@@ -9,3 +9,9 @@
 body{
     font-family: sans-serif;
 }
+
+a{
+    text-decoration: none;
+    outline: none;
+    color: white;
+}

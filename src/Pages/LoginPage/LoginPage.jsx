@@ -1,22 +1,18 @@
-import { Link } from "react-router-dom"
+import { useNavigate,Link } from "react-router-dom"
 import "./LoginPage.css"
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
-import { auth, provider } from "../../FirebaseConfig"
+import { auth, db, provider } from "../../FirebaseConfig"
 import { useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { collection, addDoc, setDoc, doc } from "firebase/firestore"
+
 
 function LoginPage() {
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
-
-    const handleGoogleLogin = () =>{
-        signInWithPopup(auth,provider)
-            .then(result => {
-
-            })
-    }
+    const navigate = useNavigate()
 
     const notify = (message) =>{
         toast(message,{
@@ -31,11 +27,34 @@ function LoginPage() {
         })
     }
 
+    const handleGoogleLogin = () =>{
+        signInWithPopup(auth,provider)
+            .then(result => {
+                setDoc(doc(db,"users",`${result.user.uid}`),{
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photo: result.user.photoURL
+                })
+                navigate("/")
+            })
+            .catch((error)=>{
+                console.log(error.code)
+                if(error.code === "auth/popup-closed-by-user")
+                    notify("SignIn popup was closed by you, please try again")
+            })
+    }
+
     const handleLogin = (e) =>{
         e.preventDefault()
         signInWithEmailAndPassword(auth,email,password)
             .then(result =>{
-                console.log(result.user)
+                addDoc(collection(db,"users"),{
+                    id: result.user.uid,
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photo: result.user.photoURL
+                })
+                navigate("/")
             })
             .catch((error)=>{
                 switch(error.code){
