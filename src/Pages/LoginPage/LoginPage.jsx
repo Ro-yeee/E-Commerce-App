@@ -1,12 +1,10 @@
 import { useNavigate,Link } from "react-router-dom"
 import "./LoginPage.css"
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
-import { auth, db, provider } from "../../FirebaseConfig"
+import { auth, provider } from "../../FirebaseConfig"
 import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { collection, addDoc, setDoc, doc } from "firebase/firestore"
-
 
 function LoginPage() {
 
@@ -29,17 +27,9 @@ function LoginPage() {
 
     const handleGoogleLogin = () =>{
         signInWithPopup(auth,provider)
-            .then(()=>{
+            .then(() => {
                 navigate("/")
             })
-            /*.then(result => {
-                setDoc(doc(db,"users",`${result.user.uid}`),{
-                    name: result.user.displayName,
-                    email: result.user.email,
-                    photo: result.user.photoURL
-                })
-
-            })*/
             .catch((error)=>{
                 console.log(error.code)
                 if(error.code === "auth/popup-closed-by-user")
@@ -50,16 +40,9 @@ function LoginPage() {
     const handleLogin = (e) =>{
         e.preventDefault()
         signInWithEmailAndPassword(auth,email,password)
-            .then(()=>navigate("/"))
-            /*.then(result =>{
-                addDoc(collection(db,"users"),{
-                    id: result.user.uid,
-                    name: result.user.displayName,
-                    email: result.user.email,
-                    photo: result.user.photoURL
-                })
-                
-            })*/
+            .then(()=>{
+                navigate("/")
+            })
             .catch((error)=>{
                 switch(error.code){
                     case "auth/invalid-email" : 

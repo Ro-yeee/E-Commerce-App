@@ -2,19 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHouse, faShop, faCartShopping, faRightFromBracket, faRightToBracket } from "@fortawesome/free-solid-svg-icons"
 import "./SideNav.css"
 import { Link,NavLink } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { auth } from "../../FirebaseConfig"
+import { useEffect } from "react"
+import { auth, db } from "../../FirebaseConfig"
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from "react-redux"
 import { LogIn, LogOut } from "../../slices/user"
+import { doc, getDoc, setDoc } from "firebase/firestore"
 
 
 function SideNav() {
-
-    const [use,setUse] = useState()
-    const [pic,setPic] = useState("")
 
     const currentUser = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -22,15 +20,29 @@ function SideNav() {
     useEffect(()=>(
         onAuthStateChanged(auth,(user)=>{
             if(user){
-                dispatch(LogIn({
-                    id : user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    photo: user.photoURL
+                getDoc(doc(db,"users",`${user.uid}`))
+                    .then(docSnap =>{
+                        if(!docSnap.exists()){
+                            setDoc(doc(db,"users",`${user.uid}`),{
+                                name: user.displayName,
+                                email: user.email,
+                                photo: user.photoURL
+                            })
+                        }else{
+                            console.log("Already Exist")
+                            //get The Data docSnap.data()
+                        }
                     })
-                )
-            }else{
-                dispatch(LogOut())
+                    .catch((error)=>{
+                        console.log(error)
+                    })
+                    dispatch(LogIn({
+                        id : user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        photo: user.photoURL
+                        })
+                    ) 
             }
         })
     ),[])
