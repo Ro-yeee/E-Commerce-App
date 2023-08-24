@@ -6,12 +6,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router";
 import { addDoc, collection } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 function SignUpPage() {
 
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [cPassword,setcPassword] = useState("")
     const navigate = useNavigate()
 
     const notify = (message) =>{
@@ -29,6 +31,8 @@ function SignUpPage() {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        if( password !== cPassword) notify("Passwords do not match")
+        else
         createUserWithEmailAndPassword(auth,email,password)
             .then(result =>{
                 updateProfile(result.user,{displayName:name,photoURL:"./images/avatar.png"})
@@ -52,6 +56,9 @@ function SignUpPage() {
                                 break  
                     case "auth/email-already-in-use" :
                                 notify("User already exist")
+                                break
+                    case "auth/missing-password" :
+                                notify("Please enter password")
                                 break
                     default :
                             notify(error.message)
@@ -99,8 +106,18 @@ function SignUpPage() {
                         id="password"
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)} />
+                    <label htmlFor="confirmpassword">
+                        Confirm Password
+                    </label>
+                    <input 
+                        type="password" 
+                        name="confirmpassword" 
+                        id="confirmpassword"
+                        value={cPassword}
+                        onChange={(e)=>setcPassword(e.target.value)} />
                     <button type="submit">Sign Up</button>
                 </form>
+                <span>Already have an account? <Link to="/login">Login</Link></span>
             </div>
         </div>
         <ToastContainer />

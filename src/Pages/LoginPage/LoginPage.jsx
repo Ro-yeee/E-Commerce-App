@@ -40,7 +40,7 @@ function LoginPage() {
             .catch((error)=>{
                 console.log(error.code)
                 if(error.code === "auth/popup-closed-by-user")
-                    notify("SignIn popup was closed by you, please try again")
+                    notify("SignIn window was closed by the user, please try again")
             })
     }
 
@@ -66,6 +66,9 @@ function LoginPage() {
                                 break  
                     case "auth/wrong-password" :
                                 notify("Password entered is wrong")
+                                break
+                    case "auth/missing-password" :
+                                notify("Please enter password")
                                 break
                     default :
                              notify(error.message)
