@@ -29,14 +29,17 @@ function LoginPage() {
 
     const handleGoogleLogin = () =>{
         signInWithPopup(auth,provider)
-            .then(result => {
+            .then(()=>{
+                navigate("/")
+            })
+            /*.then(result => {
                 setDoc(doc(db,"users",`${result.user.uid}`),{
                     name: result.user.displayName,
                     email: result.user.email,
                     photo: result.user.photoURL
                 })
-                navigate("/")
-            })
+
+            })*/
             .catch((error)=>{
                 console.log(error.code)
                 if(error.code === "auth/popup-closed-by-user")
@@ -47,15 +50,16 @@ function LoginPage() {
     const handleLogin = (e) =>{
         e.preventDefault()
         signInWithEmailAndPassword(auth,email,password)
-            .then(result =>{
+            .then(()=>navigate("/"))
+            /*.then(result =>{
                 addDoc(collection(db,"users"),{
                     id: result.user.uid,
                     name: result.user.displayName,
                     email: result.user.email,
                     photo: result.user.photoURL
                 })
-                navigate("/")
-            })
+                
+            })*/
             .catch((error)=>{
                 switch(error.code){
                     case "auth/invalid-email" : 

@@ -4,9 +4,11 @@ import "./SideNav.css"
 import { Link,NavLink } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { auth } from "../../FirebaseConfig"
-import { signOut } from "firebase/auth"
+import { onAuthStateChanged, signOut } from "firebase/auth"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch, useSelector } from "react-redux"
+import { LogIn, LogOut } from "../../slices/user"
 
 
 function SideNav() {
@@ -14,13 +16,21 @@ function SideNav() {
     const [use,setUse] = useState()
     const [pic,setPic] = useState("")
 
+    const currentUser = useSelector(state => state.user)
+    const dispatch = useDispatch()
+
     useEffect(()=>(
-        auth.onAuthStateChanged((user)=>{
+        onAuthStateChanged(auth,(user)=>{
             if(user){
-                console.log(user)
-                setUse(user.displayName)
-                setPic(user.photoURL)
-                console.log(use)
+                dispatch(LogIn({
+                    id : user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL
+                    })
+                )
+            }else{
+                dispatch(LogOut())
             }
         })
     ),[])
@@ -42,8 +52,7 @@ function SideNav() {
         signOut(auth)
             .then(()=>{
                 notify("You have been logged out")
-                setUse("")
-                setPic("")
+                dispatch(LogOut())
             })
             .catch(error=>{
                 notify(error.message)
@@ -62,16 +71,16 @@ function SideNav() {
             </div>
         </Link>
         <div className="profile">
-            <img src={pic} alt="" />
-            <span>{use}</span>
+            <img src={currentUser.photo} alt="" />
+            <span>{currentUser.name}</span>
         </div>
-        { use &&
+        { currentUser.id &&
             <Link onClick={logOut} className="sideLinks" to="/">
                 <FontAwesomeIcon className="icons" icon={faRightFromBracket} size="lg" />
                 <span>Logout</span>
             </Link>
         }
-        { !use &&
+        { !currentUser.id &&
             <Link className="sideLinks" to="/login">
                 <FontAwesomeIcon className="icons" icon={faRightToBracket} size="lg" />
                 <span>Login</span>

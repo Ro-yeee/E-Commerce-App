@@ -36,15 +36,16 @@ function SignUpPage() {
         createUserWithEmailAndPassword(auth,email,password)
             .then(result =>{
                 updateProfile(result.user,{displayName:name,photoURL:"./images/avatar.png"})
-            .then(()=>{
+                navigate("/")
+            /*.then(()=>{
                 addDoc(collection(db,"users"),{
                     id: result.user.uid,
                     name: result.user.displayName,
                     email: result.user.email,
                     photo: result.user.photoURL
                 })
-                navigate("/")
-            })
+
+            })*/
             })
             .catch((error)=>{
                 switch(error.code){
