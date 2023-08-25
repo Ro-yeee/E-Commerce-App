@@ -1,0 +1,19 @@
+.BannerPic{
+    width: 100%;
+}
+
+.slick-prev{
+   display: none !important;
+}
+
+.slick-next{
+    display: none !important;
+}
+
+.slider >ul > li > button::before{
+    font-size: 10px;
+}
+
+.slick-active > button::before {
+    width: 40px;
+}

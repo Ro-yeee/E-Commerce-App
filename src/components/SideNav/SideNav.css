@@ -8,6 +8,10 @@
     gap: 40px;
     align-items: flex-start;
     padding: 40px 40px;
+    position: sticky;
+    top: 1rem;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .pagelogo{
@@ -19,7 +23,7 @@
 
 .pagelogo > img{
     margin-left: 20px;
-    width: 100px;
+    width: 50%;
 }
 
 .logoname{
@@ -73,4 +77,38 @@
     gap: 20px;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
+}
+
+@media (max-width:1050px){
+    .sideBar{
+        width: 130px;
+        padding: 3rem 1rem;
+        border-radius: 20px;
+        align-items: center;
+    }
+    .logoname{
+        display: none;
+    }
+    .pagelogo > img{
+        margin: 0;
+        width: 60px;
+    }
+    .sideLinks > span{
+        display: none;
+    }
+    .profile > span{
+        display: none;
+    }
+    .bottomLinks{
+        display: none;
+    }
+}
+
+@media (max-width:600px){
+    .sideBar{
+        border-radius: 0;
+        top: 0;
+        width: 80px;
+        padding: 3rem 0rem;
+    }
 }
