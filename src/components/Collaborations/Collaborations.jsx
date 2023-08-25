@@ -30,7 +30,7 @@ function Collaborations() {
     
     return (
         <div className="Collaborations">
-            <h3 className="collabHeading">OUR COLLABORATIONS</h3>
+            <h2 className="collabHeading">OUR COLLABORATIONS</h2>
             <Slider className="CollaborationSlider" {...settings}>
                 <div className="CollabPicWrapper">
                     <img src="./images/Collabs/monkey1.svg" alt="" />
