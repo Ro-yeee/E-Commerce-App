@@ -1,7 +1,6 @@
 .Home{
     width: 100%;
     padding: 1rem;
-    min-height: 100vh;
     display: flex;
     background: #F5F5F5;
     gap: 1rem;
