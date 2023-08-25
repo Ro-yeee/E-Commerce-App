@@ -11,7 +11,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
     min-height: 0;
     min-width: 0;
 }
@@ -20,8 +20,7 @@
     background: black;
     color: white;
     text-align: center;
-    padding: 0.5rem 0rem;
-    margin-top: 40px;
+    padding: 0.5rem 1rem;
 }
 
 .freeReturn > h2{
@@ -35,5 +34,17 @@
     }
     .HomeRightSection{
         padding: 0 10px;
+    }
+}
+
+@media (max-width:480px){
+    .HomeRightSection{
+        gap: 1rem;
+    }
+    .freeReturn{
+        margin-top: 20px;
+    }
+    .freeReturn  > h2{
+        font-size: 1.2rem;
     }
 }

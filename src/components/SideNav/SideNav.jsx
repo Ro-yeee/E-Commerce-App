@@ -82,17 +82,19 @@ function SideNav() {
                 <img src="./images/bgg.png" alt="Urban Monkey" />
             </div>
         </Link>
+        { currentUser.isLoggedIn &&
         <div className="profile">
             <img src={currentUser.photo} alt="" />
             <span>{currentUser.name}</span>
         </div>
-        { currentUser.id &&
+}
+        { currentUser.isLoggedIn &&
             <Link onClick={logOut} className="sideLinks" to="/">
                 <FontAwesomeIcon className="icons" icon={faRightFromBracket} size="lg" />
                 <span>Logout</span>
             </Link>
         }
-        { !currentUser.id &&
+        { !currentUser.isLoggedIn &&
             <Link className="sideLinks" to="/login">
                 <FontAwesomeIcon className="icons" icon={faRightToBracket} size="lg" />
                 <span>Login</span>

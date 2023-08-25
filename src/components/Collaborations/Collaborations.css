@@ -1,0 +1,47 @@
+.Collaborations{
+    text-align: center;
+}
+
+.collabHeading{
+    margin-bottom: 20px
+}
+
+.CollaborationSlider > button{
+    height: 100%;
+    z-index: 4;
+}
+
+.Collaborations > .slick-slider > .slick-prev{
+    visibility: visible;
+    left: 0;
+ }
+
+.Collaborations > .slick-slider > .slick-next{
+    visibility: visible;
+    right: 0;
+ }
+
+ .CollabPicWrapper > img{
+    width: 100%;
+    background: #00ffc4;
+    border-radius: 10px;
+ }
+
+ .CollabPicWrapper{
+    padding: 1rem 0.8rem;
+ }
+
+ .CollaborationSlider > .slick-list{
+    background: rgb(0, 0, 0) !important;
+    border-radius: 10px;
+ }
+
+
+ @media (max-width:450px){
+    .CollabPicWrapper{
+        padding: 0.5rem 0.5rem;
+     }
+    .collabHeading{
+        font-size: 0.8rem;
+    }
+ }

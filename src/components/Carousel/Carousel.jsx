@@ -16,7 +16,7 @@ function Carousel() {
     };
 
   return (
-    <Slider className="slider" {...settings}>
+    <Slider className="slider" {...settings} >
         <div>
             <picture>
                 <source className="BannerPic" media="(min-width:800px)" srcSet="./images/Banner/shirts-large.jpeg"/>

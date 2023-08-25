@@ -3,11 +3,11 @@
 }
 
 .slick-prev{
-   display: none !important;
+   visibility: hidden;
 }
 
 .slick-next{
-    display: none !important;
+    visibility: hidden;
 }
 
 .slider >ul > li > button::before{
@@ -17,3 +17,5 @@
 .slick-active > button::before {
     width: 40px;
 }
+
+@media 

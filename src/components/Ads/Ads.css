@@ -17,4 +17,7 @@
     .Larger{
         grid-column: span 2;
     }
+    .adImage{
+        border-radius: 14px;
+    }
 }
