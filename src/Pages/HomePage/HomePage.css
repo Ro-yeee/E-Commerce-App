@@ -25,6 +25,40 @@
     font-size: 1.2rem;
 }
 
+.Community{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.Community > img{
+    width: 70%;
+}
+
+.Community > span{
+    font-weight: 200;
+    letter-spacing: 1.4px;
+}
+
+.Community > p{
+    font-weight: 900;
+}
+
+.Community > a{
+    background-color: #222222;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    word-spacing: 1.5px;
+    letter-spacing: 2px;
+}
+
+.Community > a:hover{
+    background-color: black;
+}
+
 @media (max-width:600px){
     .Home{
         padding: 0;
@@ -32,6 +66,9 @@
     }
     .HomeRightSection{
         padding: 0 10px;
+    }
+    .Community > img{
+        width: 100%;
     }
 }
 
@@ -41,5 +78,11 @@
     }
     .freeReturn{
         margin-top: 20px;
+    }
+    .Community > span{
+        font-size: 10px;
+    }
+    .Community > a{
+        padding: 1rem;
     }
 }
