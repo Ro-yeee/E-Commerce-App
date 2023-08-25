@@ -18,4 +18,6 @@
     width: 40px;
 }
 
-@media 
+.slick-dots{
+    position: relative !important;
+}
