@@ -6,18 +6,24 @@
     margin-bottom: 20px
 }
 
+.CollaborationSlider{
+    position: relative;
+}
+
 .CollaborationSlider > button{
+    height: 100%;
     z-index: 4;
+    position: absolute;
 }
 
 .Collaborations > .slick-slider > .slick-prev{
     visibility: visible;
-    left: 0;
+    left: 0 !important;
  }
 
 .Collaborations > .slick-slider > .slick-next{
     visibility: visible;
-    right: 0;
+    right: 0 !important;
  }
 
  .CollabPicWrapper > img{

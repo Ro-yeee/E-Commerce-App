@@ -8,12 +8,10 @@
 
 .HomeRightSection{
     width: 100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    min-height: 0;
-    min-width: 0;
-    overflow-y: scroll;
 }
 
 .freeReturn{
