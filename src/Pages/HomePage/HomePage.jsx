@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
 import "./HomePage.css"
-import { auth } from "../../FirebaseConfig"
 import SideNav from "../../components/SideNav/SideNav"
 import Carousel from "../../components/Carousel/Carousel"
 import Ads from "../../components/Ads/Ads"

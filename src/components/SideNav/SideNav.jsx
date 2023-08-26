@@ -2,50 +2,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHouse, faShop, faCartShopping, faRightFromBracket, faRightToBracket } from "@fortawesome/free-solid-svg-icons"
 import "./SideNav.css"
 import { Link,NavLink } from "react-router-dom"
-import { useEffect } from "react"
-import { auth, db } from "../../FirebaseConfig"
-import { onAuthStateChanged, signOut } from "firebase/auth"
+import { auth } from "../../FirebaseConfig"
+import { signOut } from "firebase/auth"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from "react-redux"
-import { LogIn, LogOut } from "../../slices/user"
-import { doc, getDoc, setDoc } from "firebase/firestore"
+import { LogOut } from "../../slices/user"
 
 
 function SideNav() {
 
     const currentUser = useSelector(state => state.user)
     const dispatch = useDispatch()
-
-    useEffect(()=>(
-        onAuthStateChanged(auth,(user)=>{
-            if(user){
-                getDoc(doc(db,"users",`${user.uid}`))
-                    .then(docSnap =>{
-                        if(!docSnap.exists()){
-                            setDoc(doc(db,"users",`${user.uid}`),{
-                                name: user.displayName,
-                                email: user.email,
-                                photo: user.photoURL
-                            })
-                        }else{
-                            console.log("Already Exist")
-                            //get The Data docSnap.data()
-                        }
-                    })
-                    .catch((error)=>{
-                        console.log(error)
-                    })
-                    dispatch(LogIn({
-                        id : user.uid,
-                        name: user.displayName,
-                        email: user.email,
-                        photo: user.photoURL
-                        })
-                    ) 
-            }
-        })
-    ),[])
 
     const notify = (message) =>{
         toast(message,{
