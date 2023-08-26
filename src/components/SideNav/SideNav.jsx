@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from "react-redux"
 import { LogOut } from "../../slices/user"
+import { isPending } from "@reduxjs/toolkit"
 
 
 function SideNav() {
@@ -69,16 +70,28 @@ function SideNav() {
             </Link>
         }
         <NavLink className={({isActive})=> isActive === true ? "linkActive sideLinks" : "sideLinks"} to="/">
-            <FontAwesomeIcon className="icons" icon={faHouse}  />
-            <span >Home</span>
+            {({ isActive}) => (
+                <>
+                    <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faHouse}  />
+                    <span >Home</span>
+                </>
+            )}
         </NavLink>
         <NavLink className={({isActive})=> isActive === true ? "linkActive sideLinks" : "sideLinks"} to="/shop">
-            <FontAwesomeIcon className="icons" icon={faShop} />
-            <span>Shop</span>
+            {({isActive}) =>(
+                <>
+                    <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faShop} />
+                    <span>Shop</span>
+                </>
+            )}
         </NavLink>
         <NavLink className={({isActive})=> isActive === true ? "linkActive sideLinks" : "sideLinks"} to="/cart">
-            <FontAwesomeIcon className="icons" icon={faCartShopping} />
-            <span>Cart</span>
+            {({isActive}) =>(
+                <>
+                    <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faCartShopping} />
+                    <span>Cart</span>
+                </>
+            )}
         </NavLink>
         <div className="bottomLinks">
             <Link to="/">Help</Link>

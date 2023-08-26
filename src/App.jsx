@@ -4,12 +4,13 @@ import HomePage from './Pages/HomePage/HomePage'
 import LoginPage from './Pages/LoginPage/LoginPage'
 import Shop from './Pages/Shop/Shop'
 import SignUpPage from './Pages/SignUpPage/SignUpPage'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './FirebaseConfig'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux'
 import { LogIn } from './slices/user'
+import PrivateRoutes from './PrivateRoutes'
 
 
 function App() {
@@ -50,10 +51,13 @@ function App() {
   return (
     <Routes>
         <Route index element ={<HomePage/>}/>
-        <Route path='/login' element={<LoginPage/>}/>
-        <Route path='/signup' element={<SignUpPage/>}/>
+        <Route path="*" element={<Navigate to="/"/>} />  
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route element={<PrivateRoutes/>}>
+            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/signup' element={<SignUpPage/>}/>
+        </Route>
     </Routes>
   )
 }
