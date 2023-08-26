@@ -11,6 +11,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux'
 import { LogIn } from './slices/user'
 import PrivateRoutes from './PrivateRoutes'
+import Product from './Pages/Product/Product'
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path="*" element={<Navigate to="/"/>} />  
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/product' element={<Product/>}/>
         <Route element={<PrivateRoutes/>}>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/signup' element={<SignUpPage/>}/>

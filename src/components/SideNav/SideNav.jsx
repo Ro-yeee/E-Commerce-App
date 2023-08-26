@@ -69,7 +69,7 @@ function SideNav() {
                 <span>Login</span>
             </Link>
         }
-        <NavLink className={({isActive})=> isActive === true ? "linkActive sideLinks" : "sideLinks"} to="/">
+        <NavLink className={({isActive})=> isActive ? "linkActive sideLinks" : "sideLinks"} to="/">
             {({ isActive}) => (
                 <>
                     <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faHouse}  />
@@ -77,7 +77,7 @@ function SideNav() {
                 </>
             )}
         </NavLink>
-        <NavLink className={({isActive})=> isActive === true ? "linkActive sideLinks" : "sideLinks"} to="/shop">
+        <NavLink className={({isActive})=> isActive ? "linkActive sideLinks" : "sideLinks"} to="/shop">
             {({isActive}) =>(
                 <>
                     <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faShop} />
@@ -85,7 +85,7 @@ function SideNav() {
                 </>
             )}
         </NavLink>
-        <NavLink className={({isActive})=> isActive === true ? "linkActive sideLinks" : "sideLinks"} to="/cart">
+        <NavLink className={({isActive})=> isActive ? "linkActive sideLinks" : "sideLinks"} to="/cart">
             {({isActive}) =>(
                 <>
                     <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faCartShopping} />

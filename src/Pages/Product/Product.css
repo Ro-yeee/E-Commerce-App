@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+.ProductPage{
+    width: 100%;
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    background: #F5F5F5;
+    gap: 1rem;
+    background: rgb(0, 0, 0);
+    color: wheat;
+}
+
+.ProductContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ProductImagesSection{
+    width: 100%;
+    max-height: 700px;
+    display: flex;
+    gap: 1rem;
+}
+
+.mainImage{
+    min-width: 80%;
+    border: 2px solid black;
+    overflow: hidden;
+    position: relative;
+}
+
+.mainImage > img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.allProductImages{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.subImages{
+    border: 2px solid black;
+    overflow: hidden;
+    position: relative;
+}
+
+.subImages >img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ProdutDetailsSection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ProdutDetailsSection > h2{
+    margin-top: 10px;
+    font-family: 'Roboto Mono', monospace;
+    background: rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 5px 0px;
+    color: aquamarine;
+    text-align: center;
+}
+
+.coreFeatures{
+    margin-top: 10px;
+    margin-left: 20px ;
+}
+
+.coreFeatures > li{
+    line-height: 2;
+    letter-spacing: 1.2px;
+    font-weight: 200;
+}
+
+.ProdutDetailsSection > p{
+    font-family: 'Kanit', sans-serif;
+    color: white;
+}
+
+.spantags{
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+    font-size: 0.9rem;
+    letter-spacing: 1.2px;
+}
+
+.firstp{
+    margin-top: 10px;
+}
+
+@media(max-width:900px){
+    .mainImage{
+        width: 100%;
+    }
+    .ProductImagesSection{
+        flex-direction: column;
+    }
+    .allProductImages{
+        flex-direction: row;
+        width: 100%;
+    }
+
+}
+
+@media (max-width:800px){
+    .allProductImages{
+        gap: 8px;
+    }
+}
+
+@media (max-width:600px){
+    .ProductPage{
+        padding: 0;
+        gap: 0;
+    }
+    .ProductContainer{
+        padding: 10px;
+    }
+}
+    
+
+@media (max-width:480px){
+    .ProductContainer{
+        gap: 1rem;
+    }
+}
+
