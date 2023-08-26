@@ -64,6 +64,7 @@ function Product() {
                 <p>We ship your order from Mumbai, Maharashtra.</p>
                 <p>Incase of return items must be returned in their original condition with our box + packaging + tags / labels as delivered to you, or it will not be accepted by our warehouse.</p>
                 <p>Please check our returns policy for more details.</p>
+                <br />
             </div>
         </div>
     </div>

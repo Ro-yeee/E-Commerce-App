@@ -22,7 +22,7 @@ function HomePage() {
                     <span>SINCE 2024</span>
                     <p>HELPING OUR COMMUNITY EXPLORE THEIR INNER STREET ARTIST</p>
                     <span>Our aim is to build the biggest self-sustaining community by empowering vari.0s artists and athletes.</span>
-                    <Link to="/shop">
+                    <Link to="/product">
                         Get Your Drip!
                     </Link>
                 </div>
