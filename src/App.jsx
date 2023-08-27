@@ -7,19 +7,49 @@ import SignUpPage from './Pages/SignUpPage/SignUpPage'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './FirebaseConfig'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux'
 import { LogIn } from './slices/user'
 import PrivateRoutes from './PrivateRoutes'
 import Product from './Pages/Product/Product'
+import { setProducts } from './slices/products'
 
 
 function App() {
 
   const currentUser = useSelector(state => state.user)
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  useEffect(()=>(
+  let all = []
+  let caps = []
+  let eyeware = []
+
+  const getProducts = () =>{
+    getDocs(query(collection(db,"products")))
+      .then(snapShot =>{
+        snapShot.forEach(element =>{
+          all = [...all , {id:element.id, ...element.data()}]
+          switch(element.data().category){
+              case "caps"     : caps = [...caps , {id:element.id , ...element.data()}]
+                                break
+              case "eyeware"  : eyeware = [...eyeware , {id:element.id, ...element.data()}]
+                                break
+          }
+        })
+        dispatch(setProducts({
+          all,
+          caps,
+          eyeware
+        }))
+        console.log(eyeware)
+        console.log(caps)
+        console.log(all)
+      })
+      .catch(error => console.log(error))
+  }
+
+  useEffect(()=>{
+    getProducts()
     onAuthStateChanged(auth,(user)=>{
         if(user){
             getDoc(doc(db,"users",`${user.uid}`))
@@ -47,7 +77,7 @@ function App() {
                 ) 
         }
     })
-  ),[])
+  },[])
 
   return (
     <Routes>
