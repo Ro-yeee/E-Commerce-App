@@ -6,3 +6,27 @@
     background: #F5F5F5;
     gap: 1rem;
 }
+
+
+.ShopContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 20px;
+}
+
+
+.picccs{
+    width: 100%;
+}
+
+.picccs > img{
+    width: 100%;
+}
+
+@media (max-width:600px){
+    .Shop{
+        padding: 0;
+        gap: 0;
+    }
+}
