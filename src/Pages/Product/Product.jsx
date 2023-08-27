@@ -1,33 +1,43 @@
+import { useParams } from "react-router"
 import SideNav from "../../components/SideNav/SideNav"
 import "./Product.css"
+import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
 
 function Product() {
+
+    const {id} = useParams()
+    const product = useSelector(state => state.products.all)
+    const requiredProduct = product.filter(element => element.id === id)
+    
+    const [item,setItem] = useState()
+
+    useEffect(()=>{
+        setItem(requiredProduct[0])
+    },[requiredProduct])
+
   return (
+    item &&
     <div className="ProductPage">
         <SideNav/>
         <div className="ProductContainer">
             <div className="ProductImagesSection">
                 <div className="mainImage" >
-                    <img src="https://www.urbanmonkey.com/cdn/shop/products/um-archives-002-13.jpg?v=1678259456" alt="" />
+                    <img src={`${item.picture}`} alt={`${item.name}`} />
                 </div>
                 <div className="allProductImages">
-                    <div className="subImages">
-                        <img src="https://www.urbanmonkey.com/cdn/shop/products/um-archives-002-13.jpg?v=1678259456" alt="" />
-                    </div>
-                    <div className="subImages">
-                        <img src="https://www.urbanmonkey.com/cdn/shop/products/um-archives-002-01.jpg?v=1678259456" alt="" />
-                    </div>
-                    <div className="subImages">
-                        <img src="https://www.urbanmonkey.com/cdn/shop/products/um-archives-002-02.jpg?v=1678259456" alt="" />
-                    </div>
-                    <div className="subImages">
-                        <img src="https://www.urbanmonkey.com/cdn/shop/products/um-archives-002-03.jpg?v=1678259456" alt="" />
-                    </div>
+                    {
+                        item.images.map((element, index) =>(
+                            <div key={index} className="subImages">
+                                <img src={`${element}`} alt={`${item.name}`} />
+                             </div>
+                        ))
+                    }
                 </div>
             </div>
             <div className="ProdutDetailsSection">
                 <h2>DESCRIPTION</h2>
-                <p className="firstp">This classic combination of light blue denim and a beautiful tan suede brim is an Urban monkey signature. Featuring high defintion embroidery patches all over, this baseball cap is an ode to our sold out bestsellers. Featuring our iconic vintage designs from the past for an unexpected twist. This summer, go beyond your most-loved denim cap and try this fresh take.</p>
+                <p className="firstp">{item.description}</p>
                 <p>Genderless Apparel by Urban Monkey®</p>
                 <div className="spantags">
                     <span>country of origin - China</span>

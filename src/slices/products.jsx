@@ -5,17 +5,19 @@ const productSlice = createSlice({
     initialState:{
         all : [],
         caps : [],
-        eyeware : []
+        eyeware : [],
+        featured : []
     },
     reducers:{
-        setProducts : (state,action) =>{
+        getProducts : (state,action) =>{
             state.all = action.payload.all
             state.caps = action.payload.caps
             state.eyeware = action.payload.eyeware
+            state.featured = action.payload.featured
         }
     }
 })
 
-export const {setProducts} = productSlice.actions
+export const {getProducts} = productSlice.actions
 
 export default productSlice.reducer

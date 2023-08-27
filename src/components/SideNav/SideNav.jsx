@@ -48,7 +48,7 @@ function SideNav() {
                     <h1>Urban</h1>
                     <h1>Monkey</h1>
                 </div>
-                <img src="./images/bgg.png" alt="Urban Monkey" />
+                <img src="../../images/bgg.png" alt="UM" />
             </div>
         </Link>
         { currentUser.isLoggedIn &&

@@ -1,0 +1,38 @@
+.GridContainer{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    padding: 10px;
+}
+
+.GridCard {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    text-decoration: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 4px 5px 8px -1px #00000075;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+} 
+
+.CardPic{
+    padding: 10px;
+    overflow: hidden;
+}
+
+.CardPic > img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.CardDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 5px 10px;
+    padding-bottom: 8px;
+}

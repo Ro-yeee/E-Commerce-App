@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LogIn } from './slices/user'
 import PrivateRoutes from './PrivateRoutes'
 import Product from './Pages/Product/Product'
-import { setProducts } from './slices/products'
+import { getProducts } from './slices/products'
 
 
 function App() {
@@ -23,8 +23,9 @@ function App() {
   let all = []
   let caps = []
   let eyeware = []
+  let featured = []
 
-  const getProducts = () =>{
+  const fetchProducts = () =>{
     getDocs(query(collection(db,"products")))
       .then(snapShot =>{
         snapShot.forEach(element =>{
@@ -36,20 +37,19 @@ function App() {
                                 break
           }
         })
-        dispatch(setProducts({
+        featured = all.filter(element => element.featured === true)
+        dispatch(getProducts({
           all,
           caps,
-          eyeware
+          eyeware,
+          featured
         }))
-        console.log(eyeware)
-        console.log(caps)
-        console.log(all)
       })
       .catch(error => console.log(error))
   }
 
   useEffect(()=>{
-    getProducts()
+    fetchProducts()
     onAuthStateChanged(auth,(user)=>{
         if(user){
             getDoc(doc(db,"users",`${user.uid}`))
@@ -85,7 +85,7 @@ function App() {
         <Route path="*" element={<Navigate to="/"/>} />  
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/cart' element={<Cart/>}/>
-        <Route path='/product' element={<Product/>}/>
+        <Route path='/product/:id' element={<Product/>}/>
         <Route element={<PrivateRoutes/>}>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/signup' element={<SignUpPage/>}/>

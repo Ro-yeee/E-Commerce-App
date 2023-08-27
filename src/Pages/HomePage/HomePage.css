@@ -25,6 +25,14 @@
     font-size: 1.2rem;
 }
 
+.FeaturedDrops{
+    text-align: center;
+}
+
+.FeaturedDrops > h2{
+    margin-bottom: 20px;
+}
+
 .Community{
     display: flex;
     flex-direction: column;
