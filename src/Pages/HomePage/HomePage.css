@@ -27,10 +27,28 @@
 
 .FeaturedDrops{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .FeaturedDrops > h2{
     margin-bottom: 20px;
+}
+
+.FeaturedDrops > a{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #222222;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    word-spacing: 1.5px;
+    letter-spacing: 2px;
+}
+
+.FeaturedDrops > a:hover{
+    background-color: black;
 }
 
 .Community{

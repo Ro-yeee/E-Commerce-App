@@ -51,6 +51,7 @@
     border: 2px solid black;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
 }
 
 .subImages >img{

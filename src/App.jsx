@@ -10,9 +10,10 @@ import { auth, db } from './FirebaseConfig'
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux'
 import { LogIn } from './slices/user'
-import PrivateRoutes from './PrivateRoutes'
 import Product from './Pages/Product/Product'
 import { getProducts } from './slices/products'
+import PrivateRoutesForAuth from './PrivateRoutesForAuth'
+import PrivateRoutesWithAuth from './PrivateRoutesWithAuth'
 
 
 function App() {
@@ -84,12 +85,12 @@ function App() {
         <Route index element ={<HomePage/>}/>
         <Route path="*" element={<Navigate to="/"/>} />  
         <Route path='/shop' element={<Shop/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/product/:id' element={<Product/>}/>
-        <Route element={<PrivateRoutes/>}>
+        <Route element={<PrivateRoutesForAuth/>}>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/signup' element={<SignUpPage/>}/>
         </Route>
+            <Route path='/cart' element={<Cart/>}/>
+            <Route path='/product/:id' element={<Product/>}/>
     </Routes>
   )
 }

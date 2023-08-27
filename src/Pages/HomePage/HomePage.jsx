@@ -23,6 +23,9 @@ function HomePage() {
                 <div className="FeaturedDrops">
                     <h2>NEW DROPS</h2>
                     <GridView products={featuredProducts}/>
+                    <Link to="/shop">
+                        View All
+                    </Link>
                 </div>
                 <Ads/>
                 <div className="Community">

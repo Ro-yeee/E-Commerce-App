@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from "react-redux"
 import { LogOut } from "../../slices/user"
-import { isPending } from "@reduxjs/toolkit"
 
 
 function SideNav() {
@@ -56,12 +55,12 @@ function SideNav() {
             <img src={currentUser.photo} alt="" />
             <span>{currentUser.name}</span>
         </div>
-}
+        }
         { currentUser.isLoggedIn &&
-            <Link onClick={logOut} className="sideLinks" to="/">
+            <div onClick={logOut} className="sideLinks">
                 <FontAwesomeIcon className="icons" icon={faRightFromBracket} size="lg" />
                 <span>Logout</span>
-            </Link>
+            </div>
         }
         { !currentUser.isLoggedIn &&
             <Link className="sideLinks" to="/login">
@@ -97,7 +96,6 @@ function SideNav() {
             <Link to="/">Help</Link>
             <Link to="/">Contact Us</Link>
         </div>
-        <ToastContainer />
     </div>
   )
 }

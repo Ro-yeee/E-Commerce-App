@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Navigate, Outlet } from "react-router";
 
-function PrivateRoutes() {
+function PrivateRoutesForAuth() {
 
   const user = useSelector(state => state.user)
   return (
@@ -9,4 +9,4 @@ function PrivateRoutes() {
   )
 }
 
-export default PrivateRoutes
+export default PrivateRoutesForAuth

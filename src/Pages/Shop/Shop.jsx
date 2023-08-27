@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import SideNav from "../../components/SideNav/SideNav"
 import "./Shop.css"
+import { ToastContainer } from "react-toastify"
 
 function Shop() {
 
@@ -18,6 +19,7 @@ function Shop() {
                 ))
             }
         </div>
+        <ToastContainer />
     </div>
   )
 }

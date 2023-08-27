@@ -11,6 +11,7 @@ function Product() {
     const requiredProduct = product.filter(element => element.id === id)
     
     const [item,setItem] = useState()
+    const [index,setIndex] = useState(0)
 
     useEffect(()=>{
         setItem(requiredProduct[0])
@@ -23,12 +24,12 @@ function Product() {
         <div className="ProductContainer">
             <div className="ProductImagesSection">
                 <div className="mainImage" >
-                    <img src={`${item.picture}`} alt={`${item.name}`} />
+                    <img src={`${item.images[index]}`} alt={`${item.name}`} />
                 </div>
                 <div className="allProductImages">
                     {
                         item.images.map((element, index) =>(
-                            <div key={index} className="subImages">
+                            <div key={index} className="subImages" onClick={() => setIndex(index)}>
                                 <img src={`${element}`} alt={`${item.name}`} />
                              </div>
                         ))
