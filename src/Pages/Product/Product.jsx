@@ -18,10 +18,11 @@ function Product() {
     },[requiredProduct])
 
   return (
-    item &&
     <div className="ProductPage">
         <SideNav/>
-        <div className="ProductContainer">
+        {
+            item &&
+            <div className="ProductContainer">
             <div className="ProductImagesSection">
                 <div className="mainImage" >
                     <img src={`${item.images[index]}`} alt={`${item.name}`} />
@@ -77,7 +78,8 @@ function Product() {
                 <p>Please check our returns policy for more details.</p>
                 <br />
             </div>
-        </div>
+         </div>
+        }       
     </div>
   )
 }

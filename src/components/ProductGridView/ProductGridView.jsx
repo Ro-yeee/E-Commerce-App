@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import "./GridView.css"
+import "./ProductGridView.css"
 
-function GridView({products}) {
+function ProductGridView({products}) {
  
   return (
     <div className="GridContainer">
@@ -22,4 +22,4 @@ function GridView({products}) {
   )
 }
 
-export default GridView
+export default ProductGridView

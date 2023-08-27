@@ -16,6 +16,7 @@
     overflow: hidden;
     background-color: black;
     color: white;
+    transition: 100ms ease-in-out;
 } 
 
 .CardPic{
@@ -34,5 +35,9 @@
     gap: 10px;
     align-items: flex-start;
     padding: 5px 10px;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
+}
+
+.GridCard:hover {
+    transform: scale(1.02);
 }

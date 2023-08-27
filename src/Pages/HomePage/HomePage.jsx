@@ -5,7 +5,7 @@ import Ads from "../../components/Ads/Ads"
 import { ToastContainer } from "react-toastify"
 import Collaborations from "../../components/Collaborations/Collaborations"
 import { Link } from "react-router-dom"
-import GridView from "../../components/GridView/GridView"
+import GridView from "../../components/ProductGridView/ProductGridView"
 import { useSelector } from "react-redux"
 
 function HomePage() {

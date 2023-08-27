@@ -10,19 +10,10 @@
 
 .ShopContainer{
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
-
-.picccs{
-    width: 100%;
-}
-
-.picccs > img{
-    width: 100%;
-}
 
 @media (max-width:600px){
     .Shop{
