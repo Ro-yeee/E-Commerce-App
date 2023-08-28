@@ -3,7 +3,7 @@ import SideNav from "../../components/SideNav/SideNav"
 import "./Shop.css"
 import { ToastContainer } from "react-toastify"
 import ProductGridView from "../../components/ProductGridView/ProductGridView"
-import { Search, Sort, setQuery, setSorting, toggleView } from "../../slices/filters"
+import { Search, Sort, setGridView, setListView, setQuery, setSorting} from "../../slices/filters"
 import { useEffect } from "react"
 import ProductListView from "../../components/ProductListView/ProductListView"
 import { GridViewSharp, TableRowsSharp } from "@mui/icons-material"
@@ -31,8 +31,8 @@ function Shop() {
         <div className="ShopContainer">
             <div className="ShopControls">
                 <div className="listBtns">
-                    <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(toggleView())} />
-                    <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(toggleView())} />
+                    <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(setListView())} />
+                    <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(setGridView())} />
                 </div>
                 <div className="SearchBar">
                     <FontAwesomeIcon icon={faMagnifyingGlass}/>
@@ -49,7 +49,6 @@ function Shop() {
                 </div>
             </div>
             {
-                products.length <= 0 ? "NO RESULTS FOUND" :
                 isGridView ? <ProductGridView products={products}/> :  <ProductListView products={products}/>
             }
         </div>

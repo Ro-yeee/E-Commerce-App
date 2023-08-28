@@ -53,6 +53,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    flex-grow: 1;
 }
 
 .SearchBar > input{

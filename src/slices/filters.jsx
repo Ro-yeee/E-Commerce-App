@@ -29,8 +29,11 @@ const filterSlice = createSlice({
                                    break        
             }
         },
-        toggleView: (state)=>{
-            state.isGridView = !state.isGridView
+        setGridView: (state)=>{
+            state.isGridView = true
+        },
+        setListView: (state)=>{
+            state.isGridView = false
         },
         setQuery: (state,action)=>{
             state.query = action.payload.toLowerCase()
@@ -43,6 +46,6 @@ const filterSlice = createSlice({
     }
 })
 
-export const {setSorting,Sort,getProd,toggleView,setQuery,Search} = filterSlice.actions
+export const {setSorting,Sort,getProd,setGridView,setListView,setQuery,Search} = filterSlice.actions
 
 export default filterSlice.reducer

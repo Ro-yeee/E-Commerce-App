@@ -1,4 +1,5 @@
 .GridContainer{
+    width: 100%;
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
@@ -20,12 +21,12 @@
 } 
 
 .CardPic{
-    padding: 10px;
     overflow: hidden;
 }
 
 .CardPic > img{
     width: 100%;
+    height: 100%;
     border-radius: 10px;
 }
 
