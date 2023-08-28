@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,300&display=swap');
+
 .Shop{
     width: 100%;
     padding: 1rem;
@@ -17,9 +19,11 @@
 }
 
 .ShopControls{
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
     padding: 10px;
     border: 2px solid black;
     z-index: 1;
@@ -41,13 +45,30 @@
     color: aquamarine;
 }
 
+.SearchBar{
+    background: white;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.SearchBar > input{
+    outline: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+
 .Sorting select{
     cursor: pointer;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
     outline: none;
     text-decoration: none;
     border: none;
-    padding: 4px;
+    padding: 5px;
     border-radius: 10px;
 }
 

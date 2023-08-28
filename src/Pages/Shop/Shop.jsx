@@ -3,10 +3,12 @@ import SideNav from "../../components/SideNav/SideNav"
 import "./Shop.css"
 import { ToastContainer } from "react-toastify"
 import ProductGridView from "../../components/ProductGridView/ProductGridView"
-import { Sort, setSorting, toggleView } from "../../slices/filters"
+import { Search, Sort, setQuery, setSorting, toggleView } from "../../slices/filters"
 import { useEffect } from "react"
 import ProductListView from "../../components/ProductListView/ProductListView"
-import { GridViewSharp, TableRowsSharp, } from "@mui/icons-material"
+import { GridViewSharp, TableRowsSharp } from "@mui/icons-material"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
 
 
@@ -15,11 +17,13 @@ function Shop() {
   const products = useSelector(state => state.filters.filteredProducts)
   const sortVal = useSelector(state => state.filters.sorting_value)
   const isGridView = useSelector(state => state.filters.isGridView)
+  const query = useSelector(state => state.filters.query)
   const dispatch = useDispatch()
 
   useEffect(()=>{
     dispatch(Sort())
-  },[sortVal])
+    dispatch(Search())
+  },[sortVal,query])
 
   return (
     <div className="Shop">
@@ -31,7 +35,8 @@ function Shop() {
                     <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(toggleView())} />
                 </div>
                 <div className="SearchBar">
-                    BAR
+                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                    <input placeholder="Search.." value={query} type="text" onChange={(e)=>dispatch(setQuery(e.target.value))} />
                 </div>
                 <div className="Sorting">
                     <select value={sortVal} name="sort" id="sort" onChange={(e)=>dispatch(setSorting(e.target.value))}>
@@ -44,6 +49,7 @@ function Shop() {
                 </div>
             </div>
             {
+                products.length <= 0 ? "NO RESULTS FOUND" :
                 isGridView ? <ProductGridView products={products}/> :  <ProductListView products={products}/>
             }
         </div>
