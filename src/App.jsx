@@ -14,6 +14,7 @@ import Product from './Pages/Product/Product'
 import { getProducts } from './slices/products'
 import PrivateRoutesForAuth from './PrivateRoutesForAuth'
 import PrivateRoutesWithAuth from './PrivateRoutesWithAuth'
+import { getProd } from './slices/filters'
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           eyeware,
           featured
         }))
+        dispatch(getProd({all}))
       })
       .catch(error => console.log(error))
   }

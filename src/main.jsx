@@ -7,12 +7,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import userReducer from './slices/user.jsx'
 import productReducer from './slices/products.jsx'
+import filterReducer from './slices/filters.jsx'
 import ScrollToTop from './ScrollToTop.jsx'
 
 const store = configureStore({
   reducer: {
     user : userReducer,
-    products : productReducer
+    products : productReducer,
+    filters : filterReducer
   }
 })
 
