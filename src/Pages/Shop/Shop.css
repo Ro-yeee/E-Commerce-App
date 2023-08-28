@@ -12,6 +12,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     position: relative;
 }
 
@@ -20,10 +21,24 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    border: 2px solid black;
+    z-index: 1;
+    color: rgb(255, 255, 255);
     background: black;
-    border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 14px;
+}
+
+.listBtns{
+    display: flex;
+    gap: 10px;
+}
+
+.listbtn{
     color: white;
+    cursor: pointer;
+}
+
+.listBtnActive{
+    color: aquamarine;
 }
 
 .Sorting select{

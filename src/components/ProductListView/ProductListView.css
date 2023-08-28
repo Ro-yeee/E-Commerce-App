@@ -1,0 +1,99 @@
+.ListContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    padding: 10px;
+}
+
+.ListCard {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 4px 5px 8px -1px #00000075;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    transition: 100ms ease-in-out;
+} 
+
+.ListCardPic{
+    flex-shrink: 0;
+    width: 40%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.ListCardPic > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.ListCardDetails{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.ListCard:hover {
+    transform: scale(1.01);
+}
+
+.cardTop{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardTop > h2{
+    color: wheat;
+    font-size: 2rem;
+}
+
+.cardTop > p{
+    color: wheat;
+    font-size: 1.4rem;
+}
+
+.cardBottom{
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cardBottom > img{
+    width: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+
+
+@media (max-width:800px){
+    .ListCardDetails{
+        .cardTop > h2{
+            font-size: 1.4rem;
+        }
+        .cardTop > p{
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@media (max-width:600px){
+    .ListCardDetails{
+        .cardTop > h2{
+            font-size: 1rem;
+        }
+        .cardTop > p{
+            font-size: 0.7rem;
+        }
+    }
+}

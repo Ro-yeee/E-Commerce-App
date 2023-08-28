@@ -5,7 +5,8 @@ const filterSlice = createSlice({
     initialState: {
         filteredProducts : [],
         allProducts : [],
-        sorting_value : ""
+        sorting_value : "",
+        isGridView: true
     },
     reducers: {
         getProd: (state,action)=>{
@@ -26,10 +27,13 @@ const filterSlice = createSlice({
                 case "high-low" :  state.filteredProducts = state.allProducts.sort((a,b)=> b.price - a.price)
                                    break        
             }
+        },
+        toggleView: (state)=>{
+            state.isGridView = !state.isGridView
         }
     }
 })
 
-export const {setSorting,Sort,getProd} = filterSlice.actions
+export const {setSorting,Sort,getProd,toggleView} = filterSlice.actions
 
 export default filterSlice.reducer

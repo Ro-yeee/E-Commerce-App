@@ -3,14 +3,18 @@ import SideNav from "../../components/SideNav/SideNav"
 import "./Shop.css"
 import { ToastContainer } from "react-toastify"
 import ProductGridView from "../../components/ProductGridView/ProductGridView"
-import { Sort, setSorting } from "../../slices/filters"
+import { Sort, setSorting, toggleView } from "../../slices/filters"
 import { useEffect } from "react"
+import ProductListView from "../../components/ProductListView/ProductListView"
+import { GridViewSharp, TableRowsSharp, } from "@mui/icons-material"
+
 
 
 function Shop() {
 
   const products = useSelector(state => state.filters.filteredProducts)
   const sortVal = useSelector(state => state.filters.sorting_value)
+  const isGridView = useSelector(state => state.filters.isGridView)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -23,7 +27,8 @@ function Shop() {
         <div className="ShopContainer">
             <div className="ShopControls">
                 <div className="listBtns">
-                    BTN
+                    <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(toggleView())} />
+                    <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(toggleView())} />
                 </div>
                 <div className="SearchBar">
                     BAR
@@ -38,7 +43,9 @@ function Shop() {
                     </select>
                 </div>
             </div>
-            <ProductGridView products={products}/>
+            {
+                isGridView ? <ProductGridView products={products}/> :  <ProductListView products={products}/>
+            }
         </div>
         <ToastContainer />
     </div>
