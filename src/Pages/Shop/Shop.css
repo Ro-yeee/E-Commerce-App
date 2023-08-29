@@ -29,7 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 10px 30px;
     padding-top: 0;
 }
 
@@ -86,6 +86,15 @@
     border-radius: 10px;
 }
 
+.filterClearBtnDesktop,.filterClearBtnMobile{
+    color: aquamarine;
+    cursor: pointer;
+}
+
+.filterClearBtnMobile{
+    display: none;
+}
+
 @media (max-width:700px){
     .Sorting > select{
         width: 60px;
@@ -110,5 +119,15 @@
     .ShopTopBar{
         position: sticky;
         top: 0;
+    }
+    .ProductQuantity{
+        font-size: 0.8rem;
+        justify-content: space-between;
+    }
+    .filterClearBtnDesktop{
+        display: none;
+    }
+    .filterClearBtnMobile{
+        display: block;
     }
 }

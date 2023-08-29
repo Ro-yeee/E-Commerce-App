@@ -50,10 +50,15 @@ const filterSlice = createSlice({
         SortByCategory: (state)=>{
             if(state.category_value !== "all")
             state.filteredProducts = state.filteredProducts.filter(element => element.category === state.category_value)
+        },
+        clearFilters: (state) =>{
+            state.sorting_value = ""
+            state.query = ""
+            state.category_value = "all"
         }
     }
 })
 
-export const {setSorting,Sort,getProd,setGridView,setListView,setQuery,Search,setCategory,SortByCategory} = filterSlice.actions
+export const {setSorting,Sort,getProd,setGridView,setListView,setQuery,Search,setCategory,SortByCategory,clearFilters} = filterSlice.actions
 
 export default filterSlice.reducer

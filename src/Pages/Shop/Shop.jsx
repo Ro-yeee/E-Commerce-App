@@ -3,12 +3,12 @@ import SideNav from "../../components/SideNav/SideNav"
 import "./Shop.css"
 import { ToastContainer } from "react-toastify"
 import ProductGridView from "../../components/ProductGridView/ProductGridView"
-import { Search, Sort, SortByCategory, setCategory, setGridView, setListView, setQuery, setSorting} from "../../slices/filters"
+import { Search, Sort, SortByCategory, clearFilters, setCategory, setGridView, setListView, setQuery, setSorting} from "../../slices/filters"
 import { useEffect } from "react"
 import ProductListView from "../../components/ProductListView/ProductListView"
 import { GridViewSharp, TableRowsSharp } from "@mui/icons-material"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { faFilterCircleXmark, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
 
 
@@ -35,20 +35,38 @@ function Shop() {
             <div className="ShopTopBar">
                 <div className="ShopControls">
                     <div className="listBtns">
-                        <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(setListView())} />
-                        <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(setGridView())} />
+                        <TableRowsSharp 
+                            className={isGridView ? "listbtn" : "listBtnActive listbtn"} 
+                            onClick={()=>dispatch(setListView())} />
+                        <GridViewSharp 
+                            className={isGridView ? "listBtnActive listbtn" : "listbtn"} 
+                            onClick={()=>dispatch(setGridView())} />
                     </div>
                     <div className="SearchBar">
-                        <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                        <input placeholder="Search.." value={query} type="text" onChange={(e)=>dispatch(setQuery(e.target.value))} />
+                        <FontAwesomeIcon 
+                            icon={faMagnifyingGlass}/>
+                        <input 
+                            placeholder="Search.." 
+                            value={query} 
+                            type="text" 
+                            onChange={(e)=>dispatch(setQuery(e.target.value))} />
                     </div>
+                    <FontAwesomeIcon 
+                        className="filterClearBtnDesktop" 
+                        icon={faFilterCircleXmark} 
+                        size="lg"
+                        onClick={() => dispatch(clearFilters())}/>
                     <div className="Category">
-                        <select value={categoryVal} name="categorySort" id="categorySort" onChange={(e)=>dispatch(setCategory(e.target.value))}>
+                        <select 
+                            value={categoryVal} 
+                            name="categorySort" 
+                            id="categorySort" 
+                            onChange={(e)=>dispatch(setCategory(e.target.value))}>
                             {
                                 categories.map((element,index)=>(
                                     <option 
-                                    value={element} 
-                                    key={index}>
+                                        value={element} 
+                                        key={index}>
                                         {element.charAt(0).toUpperCase() + element.substr(1).toLowerCase()}
                                     </option>
                                 ))
@@ -57,7 +75,7 @@ function Shop() {
                     </div>
                     <div className="Sorting">
                         <select value={sortVal} name="sort" id="sort" onChange={(e)=>dispatch(setSorting(e.target.value))}>
-                            <option value="" disabled hidden>Sort..</option>
+                            <option value="" disabled hidden>Sort</option>
                             <option value="a-z">A-Z</option>
                             <option value="z-a">Z-A</option>
                             <option value="low-high">Lowest(Price)</option>
@@ -67,6 +85,11 @@ function Shop() {
                 </div>
                 <div className="ProductQuantity">
                     <h4 style={{textAlign:"center"}}>{products.length} Products Found</h4>
+                    <FontAwesomeIcon 
+                        className="filterClearBtnMobile" 
+                        icon={faFilterCircleXmark} 
+                        size="xl"
+                        onClick={() => dispatch(clearFilters())}/>
                 </div>
             </div>
             {
