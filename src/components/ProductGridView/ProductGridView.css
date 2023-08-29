@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
     padding: 10px;
 }
 
@@ -22,9 +22,14 @@
 
 .CardPic{
     overflow: hidden;
+    position: relative;
+    min-height: 300px;
 }
 
 .CardPic > img{
+    inset: 0;
+    position: absolute;
+    object-fit: cover;
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -41,4 +46,14 @@
 
 .GridCard:hover {
     transform: scale(1.02);
+}
+
+@media(max-width:713px){
+    .CardPic{
+        position: static;
+        min-height: 0;
+    }
+    .CardPic > img{
+        position: static;
+    }
 }

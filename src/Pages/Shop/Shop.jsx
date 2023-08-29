@@ -23,8 +23,8 @@ function Shop() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    dispatch(Sort())
     dispatch(Search())
+    dispatch(Sort())
     dispatch(SortByCategory())
   },[sortVal,query,categoryVal])
 
@@ -37,7 +37,11 @@ function Shop() {
                     <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(setListView())} />
                     <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(setGridView())} />
                 </div>
-                <div className="Sorting">
+                <div className="SearchBar">
+                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                    <input placeholder="Search.." value={query} type="text" onChange={(e)=>dispatch(setQuery(e.target.value))} />
+                </div>
+                <div className="Category">
                     <select value={categoryVal} name="categorySort" id="categorySort" onChange={(e)=>dispatch(setCategory(e.target.value))}>
                         {
                             categories.map((element,index)=>(
@@ -50,20 +54,17 @@ function Shop() {
                         }                        
                     </select>
                 </div>
-                <div className="SearchBar">
-                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                    <input placeholder="Search.." value={query} type="text" onChange={(e)=>dispatch(setQuery(e.target.value))} />
-                </div>
                 <div className="Sorting">
                     <select value={sortVal} name="sort" id="sort" onChange={(e)=>dispatch(setSorting(e.target.value))}>
                         <option value="" disabled hidden>Sort..</option>
                         <option value="a-z">A-Z</option>
                         <option value="z-a">Z-A</option>
-                        <option value="low-high">Price(Lowest)</option>
-                        <option value="high-low">Price(Highest)</option>
+                        <option value="low-high">Lowest(Price)</option>
+                        <option value="high-low">Highest(Price)</option>
                     </select>
                 </div>
             </div>
+            <h4 style={{textAlign:"center"}}>{products.length} Products Found</h4>
             {
                 isGridView ? <ProductGridView products={products}/> :  <ProductListView products={products}/>
             }

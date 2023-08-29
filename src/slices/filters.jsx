@@ -20,13 +20,13 @@ const filterSlice = createSlice({
         },
         Sort: (state)=>{
             switch(state.sorting_value){
-                case "a-z" :  state.filteredProducts = state.allProducts.sort((a,b)=> a.name.localeCompare(b.name))
+                case "a-z" :  state.filteredProducts = state.filteredProducts.sort((a,b)=> a.name.localeCompare(b.name))
                               break
-                case "z-a" :  state.filteredProducts = state.allProducts.sort((a,b)=> b.name.localeCompare(a.name))
+                case "z-a" :  state.filteredProducts = state.filteredProducts.sort((a,b)=> b.name.localeCompare(a.name))
                               break
-                case "low-high" :  state.filteredProducts = state.allProducts.sort((a,b)=> a.price - b.price)
+                case "low-high" :  state.filteredProducts = state.filteredProducts.sort((a,b)=> a.price - b.price)
                                    break       
-                case "high-low" :  state.filteredProducts = state.allProducts.sort((a,b)=> b.price - a.price)
+                case "high-low" :  state.filteredProducts = state.filteredProducts.sort((a,b)=> b.price - a.price)
                                    break        
             }
         },
@@ -49,7 +49,7 @@ const filterSlice = createSlice({
         },
         SortByCategory: (state)=>{
             if(state.category_value !== "all")
-            state.filteredProducts = state.allProducts.filter(element => element.category === state.category_value)
+            state.filteredProducts = state.filteredProducts.filter(element => element.category === state.category_value)
         }
     }
 })

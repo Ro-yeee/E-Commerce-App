@@ -23,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 10px;
     padding: 10px;
     border: 2px solid black;
     z-index: 1;
@@ -63,7 +63,7 @@
     width: 100%;
 }
 
-.Sorting select{
+.Sorting > select , .Category > select{
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     outline: none;
@@ -73,10 +73,29 @@
     border-radius: 10px;
 }
 
+@media (max-width:700px){
+    .Sorting > select{
+        width: 60px;
+    }
+    .Category > select{
+        width: 50px;
+    }
+    .listBtns{
+        gap: 0;
+    }
+    .ShopControls{
+        gap: 5px;
+        padding: 10px 5px;
+    }
+}
 
 @media (max-width:600px){
     .Shop{
         padding: 0;
         gap: 0;
+    }
+    .ShopControls{
+        position: sticky;
+        top: 0;
     }
 }
