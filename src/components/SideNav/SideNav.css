@@ -58,8 +58,11 @@
 
 .sideLinks{
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     color: white;
+    position: relative;
 }
 
 .sideLinks:hover .icons{
@@ -68,6 +71,15 @@
 
 .linkActive{
     color: aqua;
+}
+
+.cartQty{
+    background: aqua;
+    padding: 4px;
+    font-size: 14px;
+    color: black;
+    font-weight: 900;
+    border-radius: 50%;
 }
 
 .bottomLinks{
@@ -96,6 +108,14 @@
     .sideLinks > span{
         display: none;
     }
+    .sideLinks > .cartQty{
+        display: block;
+        position: absolute;
+        left: 12px;
+        top: -10px;
+        padding: 3px;
+        font-size: 10px;
+    }
     .profile > span{
         display: none;
     }
@@ -110,5 +130,8 @@
         top: 0;
         width: 80px;
         padding: 3rem 0rem;
+    }
+    .sideLinks > .cartQty{
+       
     }
 }

@@ -89,6 +89,7 @@ function SideNav() {
                 <>
                     <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faCartShopping} />
                     <span>Cart</span>
+                    <span className="cartQty">10</span>
                 </>
             )}
         </NavLink>

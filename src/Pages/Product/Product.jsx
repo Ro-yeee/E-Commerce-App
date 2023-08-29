@@ -26,6 +26,7 @@ function Product() {
             <div className="ProductImagesSection">
                 <div className="mainImage" >
                     <img src={`${item.images[index]}`} alt={`${item.name}`} />
+                    <h4 className="productType">{item.type}</h4>
                 </div>
                 <div className="allProductImages">
                     {
@@ -38,6 +39,13 @@ function Product() {
                 </div>
             </div>
             <div className="ProdutDetailsSection">
+                <div className="ProductHeading">
+                    <h1>{item.name}</h1>
+                    <h2>RS. {item.price}</h2>
+                    <button>
+                        ADD TO CART
+                    </button>
+                </div>
                 <h2>DESCRIPTION</h2>
                 <p className="firstp">{item.description}</p>
                 <p>Genderless Apparel by Urban Monkey®</p>
