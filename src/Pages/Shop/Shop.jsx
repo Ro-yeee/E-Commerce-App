@@ -32,39 +32,43 @@ function Shop() {
     <div className="Shop">
         <SideNav/>
         <div className="ShopContainer">
-            <div className="ShopControls">
-                <div className="listBtns">
-                    <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(setListView())} />
-                    <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(setGridView())} />
+            <div className="ShopTopBar">
+                <div className="ShopControls">
+                    <div className="listBtns">
+                        <TableRowsSharp className={isGridView ? "listbtn" : "listBtnActive listbtn"} onClick={()=>dispatch(setListView())} />
+                        <GridViewSharp className={isGridView ? "listBtnActive listbtn" : "listbtn"} onClick={()=>dispatch(setGridView())} />
+                    </div>
+                    <div className="SearchBar">
+                        <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                        <input placeholder="Search.." value={query} type="text" onChange={(e)=>dispatch(setQuery(e.target.value))} />
+                    </div>
+                    <div className="Category">
+                        <select value={categoryVal} name="categorySort" id="categorySort" onChange={(e)=>dispatch(setCategory(e.target.value))}>
+                            {
+                                categories.map((element,index)=>(
+                                    <option 
+                                    value={element} 
+                                    key={index}>
+                                        {element.charAt(0).toUpperCase() + element.substr(1).toLowerCase()}
+                                    </option>
+                                ))
+                            }                        
+                        </select>
+                    </div>
+                    <div className="Sorting">
+                        <select value={sortVal} name="sort" id="sort" onChange={(e)=>dispatch(setSorting(e.target.value))}>
+                            <option value="" disabled hidden>Sort..</option>
+                            <option value="a-z">A-Z</option>
+                            <option value="z-a">Z-A</option>
+                            <option value="low-high">Lowest(Price)</option>
+                            <option value="high-low">Highest(Price)</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="SearchBar">
-                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                    <input placeholder="Search.." value={query} type="text" onChange={(e)=>dispatch(setQuery(e.target.value))} />
-                </div>
-                <div className="Category">
-                    <select value={categoryVal} name="categorySort" id="categorySort" onChange={(e)=>dispatch(setCategory(e.target.value))}>
-                        {
-                            categories.map((element,index)=>(
-                                <option 
-                                  value={element} 
-                                  key={index}>
-                                    {element.charAt(0).toUpperCase() + element.substr(1).toLowerCase()}
-                                </option>
-                            ))
-                        }                        
-                    </select>
-                </div>
-                <div className="Sorting">
-                    <select value={sortVal} name="sort" id="sort" onChange={(e)=>dispatch(setSorting(e.target.value))}>
-                        <option value="" disabled hidden>Sort..</option>
-                        <option value="a-z">A-Z</option>
-                        <option value="z-a">Z-A</option>
-                        <option value="low-high">Lowest(Price)</option>
-                        <option value="high-low">Highest(Price)</option>
-                    </select>
+                <div className="ProductQuantity">
+                    <h4 style={{textAlign:"center"}}>{products.length} Products Found</h4>
                 </div>
             </div>
-            <h4 style={{textAlign:"center"}}>{products.length} Products Found</h4>
             {
                 isGridView ? <ProductGridView products={products}/> :  <ProductListView products={products}/>
             }
