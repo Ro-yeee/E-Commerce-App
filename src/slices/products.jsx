@@ -4,16 +4,14 @@ const productSlice = createSlice({
     name: "products",
     initialState:{
         all : [],
-        caps : [],
-        eyeware : [],
-        featured : []
+        featured : [],
+        categories : []
     },
     reducers:{
         getProducts : (state,action) =>{
-            state.all = action.payload.all
-            state.caps = action.payload.caps
-            state.eyeware = action.payload.eyeware
+            state.all = action.payload.allProducts
             state.featured = action.payload.featured
+            state.categories = action.payload.categories
         }
     }
 })

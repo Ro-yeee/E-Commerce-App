@@ -7,12 +7,13 @@ const filterSlice = createSlice({
         allProducts : [],
         sorting_value : "",
         isGridView: true,
-        query: ""
+        query: "",
+        category_value : "all"
     },
     reducers: {
         getProd: (state,action)=>{
-            state.allProducts = action.payload.all
-            state.filteredProducts = action.payload.all
+            state.allProducts = action.payload
+            state.filteredProducts = action.payload
         },
         setSorting: (state,action)=>{
             state.sorting_value = action.payload
@@ -42,10 +43,17 @@ const filterSlice = createSlice({
             state.filteredProducts = state.allProducts.filter(element => (
                 element.name.toLowerCase().includes(state.query) || element.category.toLowerCase().includes(state.query) || element.type.toLowerCase().includes(state.query)
             ))
+        },
+        setCategory: (state,action)=>{
+            state.category_value = action.payload
+        },
+        SortByCategory: (state)=>{
+            if(state.category_value !== "all")
+            state.filteredProducts = state.allProducts.filter(element => element.category === state.category_value)
         }
     }
 })
 
-export const {setSorting,Sort,getProd,setGridView,setListView,setQuery,Search} = filterSlice.actions
+export const {setSorting,Sort,getProd,setGridView,setListView,setQuery,Search,setCategory,SortByCategory} = filterSlice.actions
 
 export default filterSlice.reducer

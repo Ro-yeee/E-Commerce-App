@@ -22,31 +22,24 @@ function App() {
   const currentUser = useSelector(state => state.user)
   const dispatch = useDispatch()
 
-  let all = []
-  let caps = []
-  let eyeware = []
+  let allProducts = []
   let featured = []
+  let categories = []
 
   const fetchProducts = () =>{
     getDocs(query(collection(db,"products")))
       .then(snapShot =>{
         snapShot.forEach(element =>{
-          all = [...all , {id:element.id, ...element.data()}]
-          switch(element.data().category){
-              case "caps"     : caps = [...caps , {id:element.id , ...element.data()}]
-                                break
-              case "eyeware"  : eyeware = [...eyeware , {id:element.id, ...element.data()}]
-                                break
-          }
+          allProducts = [...allProducts , {id:element.id, ...element.data()}]
         })
-        featured = all.filter(element => element.featured === true)
+        featured = allProducts.filter(element => element.featured === true)
+        categories = [ "all", ...new Set(allProducts.map(element => element.category)) ]
         dispatch(getProducts({
-          all,
-          caps,
-          eyeware,
-          featured
+          allProducts,
+          featured,
+          categories
         }))
-        dispatch(getProd({all}))
+        dispatch(getProd(allProducts))
       })
       .catch(error => console.log(error))
   }
