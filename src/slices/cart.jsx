@@ -17,6 +17,14 @@ const cartSlice = createSlice({
                                            }]
             state.total_qty = state.cart.reduce((a,b) => a + b.qty,0 )
         },
+        changeQuantity: (state,action)=>{
+            if(action.payload.type === "increase"){
+                state.cart = state.cart.map(item => item.id === action.payload.id ? {...item , qty: item.qty+1 } : item)
+            }else{
+                state.cart = state.cart.map(item => item.id === action.payload.id ? {...item , qty: item.qty-1 } : item)
+            }
+            state.total_qty = state.cart.reduce((a,b) => a + b.qty,0 )
+        },
         initializeCart: (state,action) =>{
             state.cart = action.payload
             state.total_qty = state.cart.reduce((a,b) => a + b.qty,0)
@@ -24,6 +32,6 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addToCart,initializeCart} = cartSlice.actions
+export const {addToCart,initializeCart,changeQuantity} = cartSlice.actions
 
 export default cartSlice.reducer

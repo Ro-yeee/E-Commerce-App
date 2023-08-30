@@ -7,9 +7,32 @@
     gap: 1rem;
 }
 
+.CartContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cartHeading{
+    background: rgb(0, 0, 0);
+    text-align: center;
+    color: aquamarine;
+    padding: 10px;
+    border-radius: 50px;
+    font-family: monospace;
+}
+
 @media (max-width:600px){
     .Cart{
         padding: 0;
         gap: 0;
+    }
+    .cartHeading{
+        border-radius: 0;
+        font-size: 1.2rem;
+    }
+    .CartContainer{
+        gap: 8px;
     }
 }

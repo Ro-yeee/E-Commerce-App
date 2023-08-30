@@ -1,0 +1,40 @@
+.quantityControl{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantityControl button{
+    border: none;
+    height: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.quantityControl button:active{
+    transform: scale(0.94);
+}
+
+.quantityControl > output{
+    background: black;
+    color: white;
+    font-size: 30px;
+}
+
+.quantityControlIcons{
+    color: white;
+    background: black;
+    font-size: 30px;
+}
+
+
+@media (max-width:600px){
+    .quantityControl > output{
+        font-size: 24px;
+    }
+    
+    .quantityControlIcons{
+        font-size: 24px;
+    }
+}

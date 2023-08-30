@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { addDoc, arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore"
 import { db } from "../../FirebaseConfig"
+import QuantityController from "../../components/QuantityController/QuantityController"
 
 function Product() {
 
@@ -59,7 +60,7 @@ function Product() {
                 picture: item.picture,
                 qty: 1
             }))
-            notify("Added to cart")
+            notify("Item added to cart")
         }
     }
 

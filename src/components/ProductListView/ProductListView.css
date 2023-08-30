@@ -77,23 +77,19 @@
 
 
 @media (max-width:800px){
-    .ListCardDetails{
-        .cardTop > h2{
-            font-size: 1.4rem;
-        }
-        .cardTop > p{
-            font-size: 0.8rem;
-        }
+    .cardTop > h2{
+        font-size: 1.4rem;
+    }
+    .cardTop > p{
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width:600px){
-    .ListCardDetails{
-        .cardTop > h2{
-            font-size: 1rem;
-        }
-        .cardTop > p{
-            font-size: 0.6rem;
-        }
+    .cardTop > h2{
+        font-size: 1rem;
+    }
+    .cardTop > p{
+        font-size: 0.6rem;
     }
 }
