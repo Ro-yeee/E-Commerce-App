@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 import { addToCart} from "../../slices/cart"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { addDoc, arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore"
+import { db } from "../../FirebaseConfig"
 
 function Product() {
 
@@ -17,6 +19,7 @@ function Product() {
     const [index,setIndex] = useState(0)
     const dispatch = useDispatch()
     const bag = useSelector(state => state.bag.cart)
+    const user = useSelector(state => state.user)
 
     useEffect(()=>{
         setItem(requiredProduct[0])
@@ -39,6 +42,16 @@ function Product() {
         if(bag.find(element => element.id === item.id)){
             notify("Already in cart")
         }else{
+            updateDoc(doc(db,"users",`${user.id}`),{
+                cart : arrayUnion({
+                    id : item.id,
+                name: item.name,
+                price: item.price,
+                picture: item.picture,
+                qty: 1
+                })
+            }).then(res => console.log(res))
+            .catch(er =>console.log(er))
             dispatch(addToCart({
                 id : item.id,
                 name: item.name,

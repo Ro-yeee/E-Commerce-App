@@ -7,7 +7,7 @@ import SignUpPage from './Pages/SignUpPage/SignUpPage'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './FirebaseConfig'
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, setDoc } from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux'
 import { LogIn } from './slices/user'
 import Product from './Pages/Product/Product'
@@ -15,6 +15,7 @@ import { getProducts } from './slices/products'
 import PrivateRoutesForAuth from './PrivateRoutesForAuth'
 import PrivateRoutesWithAuth from './PrivateRoutesWithAuth'
 import { getProd } from './slices/filters'
+import { initializeCart } from './slices/cart'
 
 
 function App() {
@@ -54,10 +55,12 @@ function App() {
                         setDoc(doc(db,"users",`${user.uid}`),{
                             name: user.displayName,
                             email: user.email,
-                            photo: user.photoURL
+                            photo: user.photoURL,
+                            cart: []
                         })
                     }else{
                         console.log("Already Exist")
+                        dispatch(initializeCart(docSnap.data().cart))
                         //get The Data docSnap.data()
                     }
                 })

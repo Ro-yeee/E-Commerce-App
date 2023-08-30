@@ -16,10 +16,14 @@ const cartSlice = createSlice({
                                             qty: 1
                                            }]
             state.total_qty = state.cart.reduce((a,b) => a + b.qty,0 )
-        }, 
+        },
+        initializeCart: (state,action) =>{
+            state.cart = action.payload
+            state.total_qty = state.cart.reduce((a,b) => a + b.qty,0)
+        } 
     }
 })
 
-export const {addToCart} = cartSlice.actions
+export const {addToCart,initializeCart} = cartSlice.actions
 
 export default cartSlice.reducer
