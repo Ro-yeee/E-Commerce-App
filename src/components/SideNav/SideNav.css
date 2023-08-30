@@ -80,6 +80,11 @@
     color: black;
     font-weight: 900;
     border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottomLinks{
@@ -109,7 +114,7 @@
         display: none;
     }
     .sideLinks > .cartQty{
-        display: block;
+        display: flex;
         position: absolute;
         left: 12px;
         top: -10px;
@@ -130,8 +135,5 @@
         top: 0;
         width: 80px;
         padding: 3rem 0rem;
-    }
-    .sideLinks > .cartQty{
-       
     }
 }

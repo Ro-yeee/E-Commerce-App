@@ -6,3 +6,10 @@
     background: #F5F5F5;
     gap: 1rem;
 }
+
+@media (max-width:600px){
+    .Cart{
+        padding: 0;
+        gap: 0;
+    }
+}

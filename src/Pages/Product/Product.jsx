@@ -1,8 +1,11 @@
 import { useParams } from "react-router"
 import SideNav from "../../components/SideNav/SideNav"
 import "./Product.css"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
+import { addToCart} from "../../slices/cart"
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Product() {
 
@@ -12,10 +15,40 @@ function Product() {
     
     const [item,setItem] = useState()
     const [index,setIndex] = useState(0)
+    const dispatch = useDispatch()
+    const bag = useSelector(state => state.bag.cart)
 
     useEffect(()=>{
         setItem(requiredProduct[0])
     },[requiredProduct])
+
+    const notify = (message) =>{
+        toast(message,{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+    }
+
+    const addToBag = () =>{
+        if(bag.find(element => element.id === item.id)){
+            notify("Already in cart")
+        }else{
+            dispatch(addToCart({
+                id : item.id,
+                name: item.name,
+                price: item.price,
+                picture: item.picture,
+                qty: 1
+            }))
+            notify("Added to cart")
+        }
+    }
 
   return (
     <div className="ProductPage">
@@ -42,7 +75,7 @@ function Product() {
                 <div className="ProductHeading">
                     <h1>{item.name}</h1>
                     <h2>RS. {item.price}</h2>
-                    <button>
+                    <button onClick={addToBag}>
                         ADD TO CART
                     </button>
                 </div>
@@ -87,7 +120,8 @@ function Product() {
                 <br />
             </div>
          </div>
-        }       
+        } 
+        <ToastContainer/>      
     </div>
   )
 }

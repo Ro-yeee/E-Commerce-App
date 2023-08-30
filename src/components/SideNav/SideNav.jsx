@@ -4,7 +4,7 @@ import "./SideNav.css"
 import { Link,NavLink } from "react-router-dom"
 import { auth } from "../../FirebaseConfig"
 import { signOut } from "firebase/auth"
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from "react-redux"
 import { LogOut } from "../../slices/user"
@@ -13,6 +13,7 @@ import { LogOut } from "../../slices/user"
 function SideNav() {
 
     const currentUser = useSelector(state => state.user)
+    const {total_qty} = useSelector(state => state.bag)
     const dispatch = useDispatch()
 
     const notify = (message) =>{
@@ -89,7 +90,7 @@ function SideNav() {
                 <>
                     <FontAwesomeIcon className={isActive ? "linkActive icons" : "icons"} icon={faCartShopping} />
                     <span>Cart</span>
-                    <span className="cartQty">10</span>
+                    <span className="cartQty">{total_qty}</span>
                 </>
             )}
         </NavLink>

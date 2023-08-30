@@ -8,13 +8,15 @@ import { Provider } from 'react-redux'
 import userReducer from './slices/user.jsx'
 import productReducer from './slices/products.jsx'
 import filterReducer from './slices/filters.jsx'
+import cartReducer from './slices/cart.jsx'
 import ScrollToTop from './ScrollToTop.jsx'
 
 const store = configureStore({
   reducer: {
     user : userReducer,
     products : productReducer,
-    filters : filterReducer
+    filters : filterReducer,
+    bag : cartReducer
   }
 })
 
