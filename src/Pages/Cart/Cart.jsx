@@ -15,17 +15,20 @@ function Cart() {
     <div className="Cart">
         <SideNav/>
         <div className="CartContainer">
-            <h2 className="cartHeading">{user.name.split(" ")[0]}'s Cart ( {total_qty} Items )</h2>
             {
-                cart.length < 1 && 
+                cart.length < 1 ? 
                     <div className="emptyMessage">
                         <h2>Your Cart Is Empty</h2>
                         <Link to="/shop">
                             Shop Now
                         </Link>
-                    </div>
+                    </div> 
+                    :
+                    <>
+                        <h2 className="cartHeading">{user.name.split(" ")[0]}'s Cart ( {total_qty} Items )</h2>
+                        <CartProductCard products={cart}/>
+                    </> 
             }
-            <CartProductCard products={cart}/>
         </div>
     </div>
   )

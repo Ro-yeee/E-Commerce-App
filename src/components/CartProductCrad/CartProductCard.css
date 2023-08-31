@@ -49,11 +49,13 @@
 .cartCardName{
     color: wheat;
     font-size: 2rem;
+    font-family: 'Phudu', cursive;
 }
 
 .cartCardPrice{
     color: wheat;
     font-size: 1.4rem;
+    font-family: 'Phudu', cursive;
 }
 
 @media (max-width:800px){
@@ -86,7 +88,7 @@
         margin-bottom: 10px;
     }
     .cartCardName{
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     .cartCardPrice{
         font-size: 0.8rem;
