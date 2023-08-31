@@ -7,8 +7,14 @@
     padding: 10px;
 }
 
+.cartCardDetails{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
 .CartCard{
-    width: 90%;
+    width: 100%;
     min-height: 240px;
     display: flex;
     color: black;
@@ -58,6 +64,31 @@
     font-family: 'Phudu', cursive;
 }
 
+.removeBtn{
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background: rgb(255 68 68);
+    color: white;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.removeBtn:hover{
+    background-color: rgb(249, 28, 28);;
+}
+
+.trash{
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    right: 10px;
+    bottom: 22px;
+    display: none;
+    background: black;
+    color: red
+}
+
 @media (max-width:800px){
     .cartCardName{
         font-size: 1.6rem;
@@ -71,13 +102,14 @@
     .CartCard{
         min-height: 200px;
     }
+    .removeBtn{
+        font-size: 0.8rem;
+        padding: 5px;
+    }
 }
 
 
 @media (max-width:600px){
-    .CartCard{
-        width: 100%;
-    }
     .CartCardPic{
         width: 100%;
     }
@@ -92,5 +124,11 @@
     }
     .cartCardPrice{
         font-size: 0.8rem;
+    }
+    .removeBtn{
+        display: none;
+    }
+    .trash{
+        display: block;
     }
 }
