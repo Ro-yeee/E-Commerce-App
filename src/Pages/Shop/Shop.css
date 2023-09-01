@@ -120,10 +120,16 @@
     .ShopTopBar{
         position: sticky;
         top: 0;
+        border-radius: 0;
+    }
+    .ShopControls{
+        padding: 5px;
     }
     .ProductQuantity{
         font-size: 0.8rem;
         justify-content: space-between;
+        padding: 2px 10px;
+        margin-top: -4px;
     }
     .filterClearBtnDesktop{
         display: none;
