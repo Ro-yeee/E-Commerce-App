@@ -134,14 +134,13 @@
         border-radius: 0;
         top: 0;
         width: 60px;
-        padding: 5px 0rem;
+        padding: 10px 0rem;
     }
 }
 
 @media (max-width:480px){
     .sideBar{
         width: 55px;
-        padding: 0;
     }
     .pagelogo > img{
         width: 55px;

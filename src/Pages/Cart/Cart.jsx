@@ -4,6 +4,7 @@ import "./Cart.css"
 import ProductListView from "../../components/ProductListView/ProductListView"
 import CartProductCard from "../../components/CartProductCrad/CartProductCard"
 import { Link } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
 
 function Cart() {
 
@@ -30,6 +31,7 @@ function Cart() {
                     </> 
             }
         </div>
+        <ToastContainer/>
     </div>
   )
 }
