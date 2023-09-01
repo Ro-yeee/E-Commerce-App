@@ -43,16 +43,29 @@ function Product() {
         if(bag.find(element => element.id === item.id)){
             notify("Already in cart")
         }else{
-            updateDoc(doc(db,"users",`${user.id}`),{
-                cart : arrayUnion({
-                    id : item.id,
-                    name: item.name,
-                    price: item.price,
-                    picture: item.picture,
-                    qty: 1
+            if(user.isLoggedIn){
+                updateDoc(doc(db,"users",`${user.id}`),{
+                    cart : arrayUnion({
+                        id : item.id,
+                        name: item.name,
+                        price: item.price,
+                        picture: item.picture,
+                        qty: 1
+                    })
                 })
-            })
-            .then(() =>{
+                .then(() =>{
+                    dispatch(addToCart({
+                        id : item.id,
+                        name: item.name,
+                        price: item.price,
+                        picture: item.picture,
+                        qty: 1
+                    }))
+                    notify("Item added to cart")
+                })
+                .catch(error =>console.log(error))
+            }
+            else{
                 dispatch(addToCart({
                     id : item.id,
                     name: item.name,
@@ -61,8 +74,7 @@ function Product() {
                     qty: 1
                 }))
                 notify("Item added to cart")
-            })
-            .catch(error =>console.log(er))
+            }
         }
     }
 

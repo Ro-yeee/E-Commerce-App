@@ -14,19 +14,24 @@ function CartProductCard({products}) {
     const dispatch = useDispatch()
 
     const handleRemove = (product) =>{
-        updateDoc(doc(db,"users",`${user.id}`),{
-            cart : arrayRemove({
-                id : product.id,
-                name : product.name,
-                picture: product.picture,
-                price: product.price,
-                qty: product.qty 
+        if(user.isLoggedIn){
+            updateDoc(doc(db,"users",`${user.id}`),{
+                cart : arrayRemove({
+                    id : product.id,
+                    name : product.name,
+                    picture: product.picture,
+                    price: product.price,
+                    qty: product.qty 
+                })
             })
-        })
-        .then(() => {
+            .then(() => {
+                dispatch(removeItem({id:product.id}))
+            })
+            .catch(error => console.log(error))
+        }else{
             dispatch(removeItem({id:product.id}))
-        })
-        .catch(error => console.log(error))
+        }
+     
     }
 
   return (

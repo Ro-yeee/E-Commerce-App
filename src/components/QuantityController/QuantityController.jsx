@@ -16,61 +16,66 @@ function QuantityController({product}) {
 
     const handleQtyControl = (type)=>{
         if(type === "decrease" && qty === 1 ) return
-        else if(type === "decrease"){
-            setLoading(true)
-            updateDoc(doc(db,"users",`${user.id}`),{
-                cart : arrayRemove({
-                    id,
-                    name,
-                    price,
-                    picture,
-                    qty
-                })
-            })
-            .then(()=>{
+        if(user.isLoggedIn){
+            if(type === "decrease"){
+                setLoading(true)
                 updateDoc(doc(db,"users",`${user.id}`),{
-                    cart : arrayUnion({
+                    cart : arrayRemove({
                         id,
                         name,
                         price,
                         picture,
-                        qty : qty - 1
+                        qty
                     })
                 })
-            })
-            .then(()=>{
-                dispatch(changeQuantity({id,type}))
-                setLoading(false)
-            })
-            .catch(error => console.log(error))
+                .then(()=>{
+                    updateDoc(doc(db,"users",`${user.id}`),{
+                        cart : arrayUnion({
+                            id,
+                            name,
+                            price,
+                            picture,
+                            qty : qty - 1
+                        })
+                    })
+                })
+                .then(()=>{
+                    dispatch(changeQuantity({id,type}))
+                    setLoading(false)
+                })
+                .catch(error => console.log(error))
+            }else{
+                setLoading(true)
+                updateDoc(doc(db,"users",`${user.id}`),{
+                    cart : arrayRemove({
+                        id,
+                        name,
+                        price,
+                        picture,
+                        qty
+                    })
+                })
+                .then(() =>{
+                    updateDoc(doc(db,"users",`${user.id}`),{
+                        cart : arrayUnion({
+                            id,
+                            name,
+                            price,
+                            picture,
+                            qty : qty + 1
+                        })
+                    })
+                })
+                .then(()=>{
+                    dispatch(changeQuantity({id,type}))
+                    setLoading(false)
+                })
+                .catch(error => console.log(error))
+            }
         }else{
-            setLoading(true)
-            updateDoc(doc(db,"users",`${user.id}`),{
-                cart : arrayRemove({
-                    id,
-                    name,
-                    price,
-                    picture,
-                    qty
-                })
-            })
-            .then(() =>{
-                updateDoc(doc(db,"users",`${user.id}`),{
-                    cart : arrayUnion({
-                        id,
-                        name,
-                        price,
-                        picture,
-                        qty : qty + 1
-                    })
-                })
-            })
-            .then(()=>{
-                dispatch(changeQuantity({id,type}))
-                setLoading(false)
-            })
-            .catch(error => console.log(error))
+            dispatch(changeQuantity({id,type}))
         }
+         
     }
 
   return (
