@@ -35,10 +35,15 @@ const cartSlice = createSlice({
         },
         setTotalAmt: (state) =>{
             state.total_amt = state.cart.reduce((a,b) => a + (b.qty * b.price),0)
+        },
+        clearCart: (state) =>{
+            state.cart = [],
+            state.total_amt = 0,
+            state.total_qty = 0
         } 
     }
 })
 
-export const {addToCart,initializeCart,changeQuantity,removeItem,setTotalAmt} = cartSlice.actions
+export const {addToCart,initializeCart,changeQuantity,removeItem,setTotalAmt,clearCart} = cartSlice.actions
 
 export default cartSlice.reducer

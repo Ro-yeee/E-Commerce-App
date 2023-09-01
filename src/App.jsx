@@ -13,9 +13,8 @@ import { LogIn } from './slices/user'
 import Product from './Pages/Product/Product'
 import { getProducts } from './slices/products'
 import PrivateRoutesForAuth from './PrivateRoutesForAuth'
-import PrivateRoutesWithAuth from './PrivateRoutesWithAuth'
 import { getProd } from './slices/filters'
-import { initializeCart } from './slices/cart'
+import { clearCart, initializeCart } from './slices/cart'
 
 
 function App() {
@@ -59,9 +58,8 @@ function App() {
                             cart: []
                         })
                     }else{
-                        console.log("Already Exist")
+                         //get The Data docSnap.data()
                         dispatch(initializeCart(docSnap.data().cart))
-                        //get The Data docSnap.data()
                     }
                 })
                 .catch((error)=>{
@@ -75,20 +73,23 @@ function App() {
                     })
                 ) 
         }
+        else{
+          dispatch(clearCart())
+        }
     })
-  },[])
+  },[currentUser])
 
   return (
     <Routes>
         <Route index element ={<HomePage/>}/>
         <Route path="*" element={<Navigate to="/"/>} />  
         <Route path='/shop' element={<Shop/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/product/:id' element={<Product/>}/>
         <Route element={<PrivateRoutesForAuth/>}>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/signup' element={<SignUpPage/>}/>
         </Route>
-            <Route path='/cart' element={<Cart/>}/>
-            <Route path='/product/:id' element={<Product/>}/>
     </Routes>
   )
 }

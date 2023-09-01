@@ -81,10 +81,6 @@
     transition: 300ms;
 }
 
-.googleSignInBtn:hover{
-    box-shadow: 2px 3px 2px 1px black;
-}
-
 .googleSignInBtn:hover p{
     color: #346BD4;
 }

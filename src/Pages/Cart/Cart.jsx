@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import SideNav from "../../components/SideNav/SideNav"
 import "./Cart.css"
-import ProductListView from "../../components/ProductListView/ProductListView"
 import CartProductCard from "../../components/CartProductCrad/CartProductCard"
 import { Link } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
@@ -9,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { useEffect } from "react"
 import { setTotalAmt } from "../../slices/cart"
+import { doc, updateDoc } from "firebase/firestore"
+import { db } from "../../FirebaseConfig"
 
 function Cart() {
 

@@ -3,12 +3,31 @@ import "./CartProductCard.css"
 import QuantityController from "../QuantityController/QuantityController"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { removeItem } from "../../slices/cart"
+import { arrayRemove, doc, updateDoc } from "firebase/firestore"
+import { db } from "../../FirebaseConfig"
 
 function CartProductCard({products}) {
 
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+
+    const handleRemove = (product) =>{
+        updateDoc(doc(db,"users",`${user.id}`),{
+            cart : arrayRemove({
+                id : product.id,
+                name : product.name,
+                picture: product.picture,
+                price: product.price,
+                qty: product.qty 
+            })
+        })
+        .then(() => {
+            dispatch(removeItem({id:product.id}))
+        })
+        .catch(error => console.log(error))
+    }
 
   return (
     <div className="CartProductCartContainer">
@@ -26,17 +45,17 @@ function CartProductCard({products}) {
                             <p className="cartCardPrice">Total : {element.price*element.qty}</p>
                         </div>
                         <div className="cartCardBottom">
-                            <QuantityController id={element.id} quantity={element.qty}/>
+                            <QuantityController product={element}/>
                         </div>
                         <button 
                             className="trash"
-                            onClick={()=>dispatch(removeItem({id:element.id}))}>
+                            onClick={() => handleRemove(element)}>
                             <FontAwesomeIcon icon={faTrash} size="xl"/>
                         </button>
                      </div>
                      <button 
                         className="removeBtn"
-                        onClick={()=>dispatch(removeItem({id:element.id}))}>
+                        onClick={() => handleRemove(element)}>
                             Remove
                     </button>
                 </div>                    
@@ -48,3 +67,5 @@ function CartProductCard({products}) {
 }
 
 export default CartProductCard
+
+
