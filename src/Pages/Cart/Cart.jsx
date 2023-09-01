@@ -1,17 +1,39 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import SideNav from "../../components/SideNav/SideNav"
 import "./Cart.css"
 import ProductListView from "../../components/ProductListView/ProductListView"
 import CartProductCard from "../../components/CartProductCrad/CartProductCard"
 import { Link } from "react-router-dom"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { useEffect } from "react"
+import { setTotalAmt } from "../../slices/cart"
 
 function Cart() {
 
     const bag = useSelector(state => state.bag)
     const user = useSelector(state => state.user)
     const {cart,total_qty,total_amt} = bag
-    
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(setTotalAmt())
+    },[cart])
+
+    const notify = (message) =>{
+        toast.success(message,{
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+    }
+
   return (
     <div className="Cart">
         <SideNav/>
@@ -26,8 +48,24 @@ function Cart() {
                     </div> 
                     :
                     <>
-                        <h2 className="cartHeading">{user.name.split(" ")[0]}'s Cart ( {total_qty} Items )</h2>
+                        <h2 
+                            className="cartHeading">
+                                {user.name ? `${user.name.split(" ")[0]}'s Cart` : "Your Cart" } ( {total_qty} Items )
+                        </h2>
                         <CartProductCard products={cart}/>
+                        <div className="subTotalSection">
+                            <div className="topSec">
+                                <p>Subtotal:</p>
+                                <span>₹ {total_amt}</span>
+                            </div>
+                            <button 
+                                type="button" 
+                                className="checkoutBtn"
+                                onClick={() =>notify("Order Placed")}>
+                                    Checkout 
+                                    <FontAwesomeIcon icon={faArrowRight}/>
+                            </button>
+                         </div>
                     </> 
             }
         </div>

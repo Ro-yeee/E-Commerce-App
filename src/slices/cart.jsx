@@ -32,10 +32,13 @@ const cartSlice = createSlice({
         removeItem: (state,account)=>{
             state.cart = state.cart.filter(item => item.id !== account.payload.id)
             state.total_qty = state.cart.reduce((a,b) => a + b.qty,0)
+        },
+        setTotalAmt: (state) =>{
+            state.total_amt = state.cart.reduce((a,b) => a + (b.qty * b.price),0)
         } 
     }
 })
 
-export const {addToCart,initializeCart,changeQuantity,removeItem} = cartSlice.actions
+export const {addToCart,initializeCart,changeQuantity,removeItem,setTotalAmt} = cartSlice.actions
 
 export default cartSlice.reducer
