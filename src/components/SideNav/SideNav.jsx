@@ -58,7 +58,7 @@ function SideNav() {
         </div>
         }
         { currentUser.isLoggedIn &&
-            <div onClick={logOut} className="sideLinks">
+            <div onClick={logOut} className="sideLinks" style={{cursor:"pointer"}}>
                 <FontAwesomeIcon className="icons" icon={faRightFromBracket} size="lg" />
                 <span>Logout</span>
             </div>
