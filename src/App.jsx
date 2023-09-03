@@ -20,6 +20,7 @@ import { clearCart, initializeCart } from './slices/cart'
 function App() {
 
   const currentUser = useSelector(state => state.user)
+  const cart = useSelector(state => state.bag.cart)
   const dispatch = useDispatch()
 
   let allProducts = []
@@ -55,7 +56,7 @@ function App() {
                             name: user.displayName,
                             email: user.email,
                             photo: user.photoURL,
-                            cart: []
+                            cart: cart
                         })
                     }else{
                          //get The Data docSnap.data()
